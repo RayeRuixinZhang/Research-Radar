@@ -156,6 +156,13 @@ class Pipeline:
         journals = [
             item for item in self.storage.load_items("journal_paper", cutoff) if item.doi
         ][: settings["limits"]["journals"]]
+        source_names = {"pubmed": "PubMed"}
+        for section in ("news", "agencies"):
+            source_names.update(
+                {source["id"]: source["name"] for source in self.config.sources.get(section, [])}
+            )
+        for item in [*hotspot_items, *news, *agencies, *journals]:
+            item.source_name = source_names.get(item.source_id, item.source_id)
         statuses = self.storage.latest_statuses()
         markdown = build_markdown(
             hotspots, news, agencies, journals, statuses, self.config.scimago_metadata()

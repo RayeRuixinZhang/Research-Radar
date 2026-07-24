@@ -9,6 +9,21 @@ import subprocess
 
 from .models import Hotspot, ResearchItem, SourceStatus
 
+CATEGORY_LABELS = {
+    "public_health": "公共卫生",
+    "medicine": "医疗",
+    "health_services": "卫生服务",
+    "infectious_disease": "传染病",
+    "medical_ai": "医疗与AI",
+    "pediatrics": "儿科学",
+    "respiratory": "呼吸道疾病",
+    "infection_control": "医院感染",
+}
+
+
+def _tags(item: ResearchItem) -> str:
+    return "、".join(CATEGORY_LABELS.get(value, value) for value in item.categories) or "未分类"
+
 
 def report_key(today: date | None = None) -> tuple[str, int, int]:
     current = today or date.today()
@@ -18,12 +33,12 @@ def report_key(today: date | None = None) -> tuple[str, int, int]:
 
 def _paper_line(item: ResearchItem) -> str:
     doi = f"[DOI: {item.doi}](https://doi.org/{item.doi})"
-    tags = "、".join(item.categories) or "未分类"
+    tags = _tags(item)
     return f"- **{item.title}**  \n  {item.summary or '无可用摘要'}  \n  {item.journal} · {item.published_at} · {tags} · {doi}"
 
 
 def _linked_line(item: ResearchItem) -> str:
-    tags = "、".join(item.categories) or "未分类"
+    tags = _tags(item)
     source = item.source_name or item.source_id
     country = f" · {item.country}" if item.country else ""
     return f"- **[{item.title}]({item.url})**  \n  {item.summary or '无可用摘要'}  \n  {source}{country} · {item.published_at} · {tags}"
@@ -41,8 +56,8 @@ def build_markdown(
     lines = [
         f"# Research Radar 科研周报 · {key}",
         "",
-        f"> 生成时间：{datetime.now(timezone.utc).replace(microsecond=0).isoformat()}  ",
-        "> 数据口径：SCImago Medicine Q1（非 JCR Q1）。标题与摘要保留原始语言。  ",
+        f"> 生成时间：{datetime.now(timezone.utc).replace(microsecond=0).isoformat()}",
+        "> 数据口径：SCImago Medicine Q1（非 JCR Q1）。标题与摘要保留原始语言。",
         "> 本报告不含图片，不转载新闻或论文全文。",
         "",
         "## 1. 近一年科研热点",
@@ -184,4 +199,3 @@ def write_report(
     (site / "reports" / f"{key}.html").write_text(html, encoding="utf-8")
     (site / ".nojekyll").write_text("", encoding="utf-8")
     return report_path, manifest_path, index_path
-
