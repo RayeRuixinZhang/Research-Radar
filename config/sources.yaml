@@ -1,0 +1,23 @@
+news:
+  - {id: reuters, name: Reuters, domain: reuters.com, mode: gdelt, priority: 6}
+  - {id: ap, name: AP Health & Science, domain: apnews.com, mode: gdelt, priority: 5}
+  - {id: bbc, name: BBC Health, domain: bbc.com, mode: gdelt, priority: 5}
+  - {id: stat, name: STAT, url: "https://www.statnews.com/feed/", mode: rss, priority: 5}
+  - {id: kff, name: KFF Health News, url: "https://kffhealthnews.org/feed/", mode: rss, priority: 5}
+  - {id: thepaper, name: 澎湃新闻, domain: thepaper.cn, mode: gdelt, priority: 4}
+
+agencies:
+  - {id: who-news, name: WHO Newsroom, country: Global, url: "https://www.who.int/rss-feeds/news-english.xml", mode: rss}
+  - {id: who-don, name: WHO Disease Outbreak News, country: Global, domain: who.int, query: "\"Disease Outbreak News\"", mode: gdelt}
+  - {id: who-wer, name: WHO Weekly Epidemiological Record, country: Global, domain: who.int, query: "\"Weekly Epidemiological Record\"", mode: gdelt}
+  - {id: cdc, name: CDC, country: United States, url: "https://tools.cdc.gov/api/v2/resources/media/132608.rss", mode: rss}
+  - {id: mmwr, name: MMWR, country: United States, url: "https://tools.cdc.gov/api/v2/resources/media/316422.rss", mode: rss}
+  - {id: hhs, name: HHS, country: United States, domain: hhs.gov, mode: gdelt}
+  - {id: phac, name: Public Health Agency of Canada, country: Canada, domain: canada.ca, query: "\"Public Health Agency of Canada\"", mode: gdelt}
+  - {id: nhc-cn, name: 国家卫生健康委员会, country: China, domain: nhc.gov.cn, mode: gdelt}
+  - {id: chinacdc, name: 中国疾病预防控制中心, country: China, domain: chinacdc.cn, mode: gdelt}
+  - {id: ukhsa, name: UK Health Security Agency, country: United Kingdom, domain: gov.uk, query: "\"UK Health Security Agency\"", mode: gdelt}
+  - {id: nhs, name: NHS England, country: United Kingdom, domain: england.nhs.uk, mode: gdelt}
+  - {id: ecdc, name: ECDC, country: European Union, url: "https://www.ecdc.europa.eu/en/news-events/rss", mode: rss}
+  - {id: au-health, name: Australian Department of Health, country: Australia, domain: health.gov.au, mode: gdelt}
+  - {id: paho, name: PAHO, country: Americas, domain: paho.org, mode: gdelt}

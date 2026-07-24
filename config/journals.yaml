@@ -1,0 +1,30 @@
+main:
+  - {name: New England Journal of Medicine, aliases: [N Engl J Med, NEJM]}
+  - {name: The Lancet, aliases: [Lancet]}
+  - {name: JAMA, aliases: [JAMA]}
+  - {name: BMJ, aliases: [Br Med J]}
+  - {name: Nature, aliases: [Nature]}
+  - {name: Science, aliases: [Science]}
+  - {name: Cell, aliases: [Cell]}
+selected:
+  - {name: NEJM AI, aliases: [NEJM AI]}
+  - {name: NEJM Evidence, aliases: [NEJM Evid]}
+  - {name: The Lancet Public Health, aliases: [Lancet Public Health]}
+  - {name: The Lancet Infectious Diseases, aliases: [Lancet Infect Dis]}
+  - {name: The Lancet Digital Health, aliases: [Lancet Digit Health]}
+  - {name: The Lancet Child & Adolescent Health, aliases: [Lancet Child Adolesc Health]}
+  - {name: The Lancet Respiratory Medicine, aliases: [Lancet Respir Med]}
+  - {name: JAMA Pediatrics, aliases: [JAMA Pediatr]}
+  - {name: JAMA Network Open, aliases: [JAMA Netw Open]}
+  - {name: BMJ Global Health, aliases: [BMJ Glob Health]}
+  - {name: BMJ Quality & Safety, aliases: [BMJ Qual Saf]}
+  - {name: Nature Medicine, aliases: [Nat Med]}
+  - {name: Nature Microbiology, aliases: [Nat Microbiol]}
+  - {name: Nature Biomedical Engineering, aliases: [Nat Biomed Eng]}
+  - {name: Nature Machine Intelligence, aliases: [Nat Mach Intell]}
+  - {name: Science Translational Medicine, aliases: [Sci Transl Med]}
+  - {name: Science Immunology, aliases: [Sci Immunol]}
+  - {name: Cell Reports Medicine, aliases: [Cell Rep Med]}
+  - {name: Cell Host & Microbe, aliases: [Cell Host Microbe]}
+  - {name: Cell Systems, aliases: [Cell Syst]}
+

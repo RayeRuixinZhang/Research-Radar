@@ -1,0 +1,26 @@
+categories:
+  public_health:
+    label: 公共卫生
+    terms: [public health, population health, health policy, health equity, 公共卫生, 健康政策, 健康公平]
+  medicine:
+    label: 医疗
+    terms: [medicine, clinical, patient, hospital, treatment, diagnosis, 医疗, 临床, 患者, 医院, 治疗, 诊断]
+  health_services:
+    label: 卫生服务
+    terms: [health service, health system, primary care, insurance, workforce, 卫生服务, 卫生系统, 基层医疗, 医保]
+  infectious_disease:
+    label: 传染病
+    terms: [infectious, outbreak, epidemic, pandemic, pathogen, virus, vaccine, 传染病, 暴发, 疫情, 病毒, 疫苗]
+  medical_ai:
+    label: 医疗与AI
+    terms: [artificial intelligence, machine learning, deep learning, predictive model, surveillance, 人工智能, 机器学习, 深度学习, 预测模型, 监测]
+  pediatrics:
+    label: 儿科学
+    terms: [pediatric, paediatric, child health, infant, neonatal, 儿科, 儿童健康, 婴儿, 新生儿]
+  respiratory:
+    label: 呼吸道疾病
+    terms: [respiratory, pneumonia, influenza, asthma, copd, 呼吸道, 肺炎, 流感, 哮喘, 慢阻肺]
+  infection_control:
+    label: 医院感染
+    terms: [healthcare-associated infection, hospital-acquired, infection control, antimicrobial resistance, 医院感染, 院感, 感染控制, 耐药]
+

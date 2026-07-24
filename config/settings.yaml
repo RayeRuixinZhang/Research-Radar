@@ -1,0 +1,39 @@
+project:
+  name: Research Radar
+  language: zh-CN
+  timezone: Asia/Shanghai
+  contact_email: zrxzrx1227@163.com
+
+windows:
+  weekly_days: 7
+  hotspot_days: 365
+  recent_days: 90
+
+limits:
+  hotspots: 10
+  representative_papers: 3
+  news: 15
+  agencies: 20
+  journals: 30
+  summary_characters: 250
+
+hotspot_score:
+  volume: 0.40
+  acceleration: 0.30
+  citation: 0.20
+  diversity: 0.10
+  minimum_papers: 5
+  minimum_journals: 3
+
+storage:
+  sqlite_path: output/research-radar.db
+  reports_dir: reports
+  manifests_dir: manifests
+  site_dir: _site
+  r2_prefix: research-radar
+
+ai:
+  enabled: false
+  provider: ""
+  model: ""
+
