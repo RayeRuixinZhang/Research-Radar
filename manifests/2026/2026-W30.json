@@ -1,13 +1,13 @@
 {
-  "generated_at": "2026-07-24T07:59:24+00:00",
-  "git_commit": "d7c778eab0a5faa10782593b69f1c23615056f63",
-  "github_run_id": "",
+  "generated_at": "2026-07-24T08:01:19+00:00",
+  "git_commit": "c3a938c7fd04a85e311c7b21e8119f95645d1dd6",
+  "github_run_id": "30077365585",
   "items": [
     {
       "content_hash": "adc160517b52f8d8003725203e4087026af632c30fc93f925b0800e55b0f1f5b",
       "doi": "",
       "item_id": "92b5fb6fe93d35b5b8f9136d",
-      "retrieved_at": "2026-07-24T07:35:48+00:00",
+      "retrieved_at": "2026-07-24T08:00:42+00:00",
       "source_id": "stat",
       "url": "https://www.statnews.com/2026/07/23/cyclospora-second-outbreak-reported-fda-cites-72-new-cases/"
     },
@@ -15,7 +15,7 @@
       "content_hash": "218052b9103a7c2692654aa1f28f349650dd6a81831b25ccdf678f4042735f48",
       "doi": "",
       "item_id": "bbb5dbb4ff8f88fb5c9a2361",
-      "retrieved_at": "2026-07-24T07:35:48+00:00",
+      "retrieved_at": "2026-07-24T08:00:42+00:00",
       "source_id": "stat",
       "url": "https://www.statnews.com/pharmalot/2026/07/23/european-medicines-agency-bolster-clinical-trials-transparency/"
     },
@@ -23,7 +23,7 @@
       "content_hash": "0166f7586e92c57e427c40bc8fe55e2a212b5ef4993c4a70ffe4e3ad08c8cde0",
       "doi": "",
       "item_id": "843d365a1d9a35003c6b80ce",
-      "retrieved_at": "2026-07-24T07:35:48+00:00",
+      "retrieved_at": "2026-07-24T08:00:42+00:00",
       "source_id": "stat",
       "url": "https://www.statnews.com/2026/07/23/sanofi-insulin-lantus-solostar-pen-reported-short-supply/"
     },
@@ -31,7 +31,7 @@
       "content_hash": "9ed23f69a8e3dcc81015683b3960e90962e9a30c0d9ae2ac7e903680bc92ae3f",
       "doi": "",
       "item_id": "a3f2d711ecdeab47f9399857",
-      "retrieved_at": "2026-07-24T07:35:48+00:00",
+      "retrieved_at": "2026-07-24T08:00:42+00:00",
       "source_id": "stat",
       "url": "https://www.statnews.com/2026/07/23/sean-kaufman-aspr-nomination-confirmation-vote-postponed-senate-committee/"
     },
@@ -39,7 +39,7 @@
       "content_hash": "7a0a99bc0cbe08917047341d6afc9803eb60db2843b753b1670abc460d19fe14",
       "doi": "",
       "item_id": "acc0106d95710ada4497314a",
-      "retrieved_at": "2026-07-24T07:35:48+00:00",
+      "retrieved_at": "2026-07-24T08:00:42+00:00",
       "source_id": "stat",
       "url": "https://www.statnews.com/2026/07/23/hhs-convenes-experts-on-clinical-ai-health-tech/"
     },
@@ -47,7 +47,7 @@
       "content_hash": "35c0d9417215e8e25fcf9895cd1ed57b20c3145911ca454c8ddaae26b7de74a4",
       "doi": "",
       "item_id": "57e42f502c59fa018a41ab75",
-      "retrieved_at": "2026-07-24T07:35:48+00:00",
+      "retrieved_at": "2026-07-24T08:00:42+00:00",
       "source_id": "stat",
       "url": "https://www.statnews.com/pharmalot/2026/07/23/fda-urged-by-advocacy-group-to-ban-dtc-prescription-drug-ads/"
     },
@@ -55,7 +55,7 @@
       "content_hash": "90376871d76e43faac7d880350010a308cc9dc256fceba11ac973630b9ada069",
       "doi": "",
       "item_id": "2ef5d74afda3a8a086f18438",
-      "retrieved_at": "2026-07-24T07:35:48+00:00",
+      "retrieved_at": "2026-07-24T08:00:42+00:00",
       "source_id": "stat",
       "url": "https://www.statnews.com/2026/07/23/health-news-expect-a-clash-at-today-fda-peptide-panel/"
     },
@@ -63,7 +63,7 @@
       "content_hash": "8123f2b2979686c7b57dfef693ab5221f8eea50d619892af21ba4da0bd1022a6",
       "doi": "",
       "item_id": "d51f5a5511c1cc1c88ce0a5e",
-      "retrieved_at": "2026-07-24T07:35:48+00:00",
+      "retrieved_at": "2026-07-24T08:00:42+00:00",
       "source_id": "stat",
       "url": "https://www.statnews.com/2026/07/23/global-maternity-care-billing-acog-explains/"
     },
@@ -71,7 +71,7 @@
       "content_hash": "79cc39198d222735d57ac3aeed6c36822c4e95e06134866200c5b9d5cfbf71b9",
       "doi": "",
       "item_id": "eb253b41b95e6e9657c035e5",
-      "retrieved_at": "2026-07-24T07:35:48+00:00",
+      "retrieved_at": "2026-07-24T08:00:42+00:00",
       "source_id": "stat",
       "url": "https://www.statnews.com/2026/07/23/global-billing-maternity-care-mistake/"
     },
@@ -79,7 +79,7 @@
       "content_hash": "6674655be7c6d24d7f6a636ff61f1f2267a1c61b564bf80ef964294f6ea52ed4",
       "doi": "",
       "item_id": "6e015754c7c639ab1d0eb6db",
-      "retrieved_at": "2026-07-24T07:35:53+00:00",
+      "retrieved_at": "2026-07-24T08:00:42+00:00",
       "source_id": "kff",
       "url": "https://kffhealthnews.org/news/listen-kff-health-news-minute-2026/"
     },
@@ -87,7 +87,7 @@
       "content_hash": "e68b45d7558d4946826a92e5787b69a44f97d36d951f4d4192f58797e3ac914b",
       "doi": "",
       "item_id": "66ec39d65b2a9eb67eb0cfc9",
-      "retrieved_at": "2026-07-24T07:35:53+00:00",
+      "retrieved_at": "2026-07-24T08:00:42+00:00",
       "source_id": "kff",
       "url": "https://kffhealthnews.org/public-health/epa-grants-public-health-improvements-stall-trump-dei-crackdown-georgia/"
     },
@@ -95,23 +95,15 @@
       "content_hash": "a064b66c453a657b4048e8f8142570b04d40f143a9a997fd68910cd4d2cde484",
       "doi": "",
       "item_id": "0b95d729e8f3221800df1b3a",
-      "retrieved_at": "2026-07-24T07:35:53+00:00",
+      "retrieved_at": "2026-07-24T08:00:42+00:00",
       "source_id": "kff",
       "url": "https://kffhealthnews.org/public-health/american-scientists-virologist-charges-mpox-samples-rocky-mountain-laboratories/"
-    },
-    {
-      "content_hash": "f28551bd5638614b0157817c97d81622a3dfffca57993734d278cdb723475de5",
-      "doi": "",
-      "item_id": "6aa90134b4006980c3cd3b17",
-      "retrieved_at": "2026-07-24T07:39:15+00:00",
-      "source_id": "bbc",
-      "url": "https://www.bbc.com/news/articles/cdewk5r308jo"
     },
     {
       "content_hash": "663913c8da6b8b615af661ee24a28bef1ecaabf9cb177708cfa5f5bd26f30632",
       "doi": "",
       "item_id": "be3242377650d594022e9ef3",
-      "retrieved_at": "2026-07-24T07:36:11+00:00",
+      "retrieved_at": "2026-07-24T08:00:43+00:00",
       "source_id": "who-news",
       "url": "https://www.who.int/news/item/20-07-2026-road-deaths-fall-by-21--globally-but-stronger-action-is-needed-to-save-lives"
     },
@@ -119,7 +111,7 @@
       "content_hash": "1fd79bf2e5c303a4a9db476fb5736736165bf57fad4a7bb5eaf8c93ec5bc96de",
       "doi": "",
       "item_id": "35d51291f917d0bc93abcc2b",
-      "retrieved_at": "2026-07-24T07:36:38+00:00",
+      "retrieved_at": "2026-07-24T08:00:43+00:00",
       "source_id": "cdc",
       "url": "https://tools.cdc.gov/api/embed/downloader/download.asp?m=132608&c=766045"
     },
@@ -127,7 +119,7 @@
       "content_hash": "683af1f26db2c237fa747a4465c296cf3e2ae309d68911bddab7d3ec3485f7fc",
       "doi": "",
       "item_id": "2fac7b269a09824542f6213b",
-      "retrieved_at": "2026-07-24T07:36:38+00:00",
+      "retrieved_at": "2026-07-24T08:00:43+00:00",
       "source_id": "cdc",
       "url": "https://tools.cdc.gov/api/embed/downloader/download.asp?m=132608&c=766046"
     },
@@ -135,7 +127,7 @@
       "content_hash": "5b9875ac8bdf3e05e0cb4f59dd901a4895c58d531875dfc886670be3348fda61",
       "doi": "",
       "item_id": "1eba9feee0c4dc4dbfd72bf5",
-      "retrieved_at": "2026-07-24T07:36:11+00:00",
+      "retrieved_at": "2026-07-24T08:00:43+00:00",
       "source_id": "who-news",
       "url": "https://www.who.int/news/item/20-07-2026-who-member-states-continue-negotiations-on-the-pathogen-access-and-benefit-sharing-annex"
     },
@@ -143,7 +135,7 @@
       "content_hash": "8342320aad7704334d92682bef9d3bc1e17d4220f3345cea97c235d9037e70a9",
       "doi": "",
       "item_id": "ae38b1915efd0fa5bea9496f",
-      "retrieved_at": "2026-07-24T07:36:38+00:00",
+      "retrieved_at": "2026-07-24T08:00:43+00:00",
       "source_id": "cdc",
       "url": "https://tools.cdc.gov/api/embed/downloader/download.asp?m=132608&c=766028"
     },
@@ -151,7 +143,7 @@
       "content_hash": "e774e714f9cdbf66e61eb1775c5d00d5f902801ad2b233aa3173e386c61f621d",
       "doi": "10.1038/s41564-026-02414-3",
       "item_id": "b4ed26aed2d0393db8580846",
-      "retrieved_at": "2026-07-24T07:33:14+00:00",
+      "retrieved_at": "2026-07-24T08:00:27+00:00",
       "source_id": "pubmed",
       "url": "https://pubmed.ncbi.nlm.nih.gov/42493653/"
     },
@@ -159,7 +151,7 @@
       "content_hash": "874344455e2d1a1a8621d81b8a384037df44231db3b85327cf41df632c03a291",
       "doi": "10.1038/s41564-026-02432-1",
       "item_id": "8eea782a94eceedb41bab1d7",
-      "retrieved_at": "2026-07-24T07:33:14+00:00",
+      "retrieved_at": "2026-07-24T08:00:27+00:00",
       "source_id": "pubmed",
       "url": "https://pubmed.ncbi.nlm.nih.gov/42493652/"
     },
@@ -167,7 +159,7 @@
       "content_hash": "94446ec338512e21a05d44ce6e56bff4673c87307561c1eb40b6e9478602e048",
       "doi": "10.1038/s41591-026-04534-z",
       "item_id": "71dc34f6caf2fe9ee6097093",
-      "retrieved_at": "2026-07-24T07:33:14+00:00",
+      "retrieved_at": "2026-07-24T08:00:27+00:00",
       "source_id": "pubmed",
       "url": "https://pubmed.ncbi.nlm.nih.gov/42493571/"
     },
@@ -175,7 +167,7 @@
       "content_hash": "af69466be7338f4267b8e6b8e28b78caa7e9ce8ed2dd9b65b121e090a61b9fd8",
       "doi": "10.1016/j.landig.2026.101025",
       "item_id": "3f4688aca14a2d4e80fcbf53",
-      "retrieved_at": "2026-07-24T07:33:14+00:00",
+      "retrieved_at": "2026-07-24T08:00:27+00:00",
       "source_id": "pubmed",
       "url": "https://pubmed.ncbi.nlm.nih.gov/42493284/"
     },
@@ -183,7 +175,7 @@
       "content_hash": "fa7bf2902778ed979da09813a8170ca28cc4b4934120a48f1cf4fb3235d35f88",
       "doi": "10.1136/bmjqs-2026-020128",
       "item_id": "f15a636e9c23b2508f7def90",
-      "retrieved_at": "2026-07-24T07:33:14+00:00",
+      "retrieved_at": "2026-07-24T08:00:27+00:00",
       "source_id": "pubmed",
       "url": "https://pubmed.ncbi.nlm.nih.gov/42493244/"
     },
@@ -191,7 +183,7 @@
       "content_hash": "91f4fef1b5cc379cec65753711cc2f286342900570968814884ceb97c3cac435",
       "doi": "10.1136/bmj-2026-100387",
       "item_id": "cf7e06a0b16965a457b048b3",
-      "retrieved_at": "2026-07-24T07:33:14+00:00",
+      "retrieved_at": "2026-07-24T08:00:27+00:00",
       "source_id": "pubmed",
       "url": "https://pubmed.ncbi.nlm.nih.gov/42492983/"
     },
@@ -199,7 +191,7 @@
       "content_hash": "10c873ab6aa7e4c17c80258729b2f7aba889e8f9be29c1d8a638cde3a4277ec1",
       "doi": "10.1136/bmj-2026-100119",
       "item_id": "cec7140121ee537c9aa89462",
-      "retrieved_at": "2026-07-24T07:33:14+00:00",
+      "retrieved_at": "2026-07-24T08:00:27+00:00",
       "source_id": "pubmed",
       "url": "https://pubmed.ncbi.nlm.nih.gov/42492960/"
     },
@@ -207,7 +199,7 @@
       "content_hash": "c44fdb19146d7c12781626b37279ea9877deba0d073d9b05409d49ff24fbbcd6",
       "doi": "10.1136/bmj.s944",
       "item_id": "1b4d136bf57b87f390e37d79",
-      "retrieved_at": "2026-07-24T07:33:14+00:00",
+      "retrieved_at": "2026-07-24T08:00:27+00:00",
       "source_id": "pubmed",
       "url": "https://pubmed.ncbi.nlm.nih.gov/42492949/"
     },
@@ -215,7 +207,7 @@
       "content_hash": "796110aee847ec4c980caed10dcdf9cb1e9a75ec0197c4f6302e9d356525a45b",
       "doi": "10.1136/bmj-2026-100378",
       "item_id": "f7e5109d1ab6b92974bbb7ff",
-      "retrieved_at": "2026-07-24T07:33:14+00:00",
+      "retrieved_at": "2026-07-24T08:00:27+00:00",
       "source_id": "pubmed",
       "url": "https://pubmed.ncbi.nlm.nih.gov/42492947/"
     },
@@ -223,7 +215,7 @@
       "content_hash": "7b17ec59ea2b9b436ecc0b9a2d43a498a790c943a0072e1da4e9e65d3c890b52",
       "doi": "10.1136/bmj-2026-100040",
       "item_id": "26ed86508f06bd453bc4b9a7",
-      "retrieved_at": "2026-07-24T07:33:14+00:00",
+      "retrieved_at": "2026-07-24T08:00:27+00:00",
       "source_id": "pubmed",
       "url": "https://pubmed.ncbi.nlm.nih.gov/42492944/"
     },
@@ -231,7 +223,7 @@
       "content_hash": "d2767ebe3c6f36f8ef71ac75f6b6a9ee020fc9f469cfaec802262d52fae931cd",
       "doi": "10.1016/s0140-6736(26)00879-2",
       "item_id": "9d97e0cb76543067e08f3234",
-      "retrieved_at": "2026-07-24T07:33:14+00:00",
+      "retrieved_at": "2026-07-24T08:00:27+00:00",
       "source_id": "pubmed",
       "url": "https://pubmed.ncbi.nlm.nih.gov/42492562/"
     },
@@ -239,7 +231,7 @@
       "content_hash": "f4836f4c78fabc0768c1bbe419d1ed6ccc9861c3f01b3f235cb1fc1a6f7e3a15",
       "doi": "10.1016/s1473-3099(26)00407-x",
       "item_id": "382f516daaeeb78b2b1f29b3",
-      "retrieved_at": "2026-07-24T07:33:14+00:00",
+      "retrieved_at": "2026-07-24T08:00:27+00:00",
       "source_id": "pubmed",
       "url": "https://pubmed.ncbi.nlm.nih.gov/42492560/"
     },
@@ -247,7 +239,7 @@
       "content_hash": "9a2130f50e36a6274790487146f79167c2e6bf80fb3a5db57d1850124348ecc8",
       "doi": "10.1016/s2352-4642(26)00184-7",
       "item_id": "d79af62d10a69d3532f8f181",
-      "retrieved_at": "2026-07-24T07:33:14+00:00",
+      "retrieved_at": "2026-07-24T08:00:27+00:00",
       "source_id": "pubmed",
       "url": "https://pubmed.ncbi.nlm.nih.gov/42492559/"
     },
@@ -255,7 +247,7 @@
       "content_hash": "d7b736dccae66de7b8a9b3f1e48176b46775b87d4e3da52589f964d978e2e042",
       "doi": "10.1016/s2352-4642(26)00198-7",
       "item_id": "851f465f92f005fc515c3100",
-      "retrieved_at": "2026-07-24T07:33:14+00:00",
+      "retrieved_at": "2026-07-24T08:00:27+00:00",
       "source_id": "pubmed",
       "url": "https://pubmed.ncbi.nlm.nih.gov/42492558/"
     },
@@ -263,7 +255,7 @@
       "content_hash": "488c161930bb3d57cc441a74ddb16aecf96a81e27db2c48432169edffba510a5",
       "doi": "10.1016/j.xcrm.2026.102933",
       "item_id": "8e0c77cd7d6d523999146ee8",
-      "retrieved_at": "2026-07-24T07:33:14+00:00",
+      "retrieved_at": "2026-07-24T08:00:27+00:00",
       "source_id": "pubmed",
       "url": "https://pubmed.ncbi.nlm.nih.gov/42492521/"
     },
@@ -271,7 +263,7 @@
       "content_hash": "359ee30291e295646f1f10868b876a52c837fa88100fb439058ac1185209335a",
       "doi": "10.1016/j.xcrm.2026.102938",
       "item_id": "6b9683691062ce83e4300291",
-      "retrieved_at": "2026-07-24T07:33:14+00:00",
+      "retrieved_at": "2026-07-24T08:00:27+00:00",
       "source_id": "pubmed",
       "url": "https://pubmed.ncbi.nlm.nih.gov/42492520/"
     },
@@ -279,7 +271,7 @@
       "content_hash": "3691f4d6c0176707fa3664494be0e454c1852a38b77629673caa967bfd941a22",
       "doi": "10.1016/j.xcrm.2026.102936",
       "item_id": "9f096b8fdaec81b4e20c2781",
-      "retrieved_at": "2026-07-24T07:33:14+00:00",
+      "retrieved_at": "2026-07-24T08:00:27+00:00",
       "source_id": "pubmed",
       "url": "https://pubmed.ncbi.nlm.nih.gov/42492518/"
     },
@@ -287,7 +279,7 @@
       "content_hash": "0d7a75266a086433a06c4637432c2bb5986e189acfc81a47061db6d99f588716",
       "doi": "10.1016/j.cell.2026.06.030",
       "item_id": "8da7f40b5f6b09f2e0614dbc",
-      "retrieved_at": "2026-07-24T07:33:14+00:00",
+      "retrieved_at": "2026-07-24T08:00:27+00:00",
       "source_id": "pubmed",
       "url": "https://pubmed.ncbi.nlm.nih.gov/42492495/"
     },
@@ -295,7 +287,7 @@
       "content_hash": "50e6cace0b769d4595223a24a51c9bb52debc844415ceae463a555fef5210bfb",
       "doi": "10.1016/j.cell.2026.06.021",
       "item_id": "6b53a3a5473c30180f2e4a15",
-      "retrieved_at": "2026-07-24T07:33:14+00:00",
+      "retrieved_at": "2026-07-24T08:00:27+00:00",
       "source_id": "pubmed",
       "url": "https://pubmed.ncbi.nlm.nih.gov/42492493/"
     },
@@ -303,7 +295,7 @@
       "content_hash": "0ca48d255b600be41cbf336f9b40caecd1cb071afadad359053ae7559f5abf6c",
       "doi": "10.1126/science.aed0667",
       "item_id": "c76ac52cf893c3a70799ea82",
-      "retrieved_at": "2026-07-24T07:33:14+00:00",
+      "retrieved_at": "2026-07-24T08:00:27+00:00",
       "source_id": "pubmed",
       "url": "https://pubmed.ncbi.nlm.nih.gov/42490499/"
     },
@@ -311,7 +303,7 @@
       "content_hash": "ddbad92600ff8aa3def266edd0f96e3b13785b6a3405ca60fc332f1f96714f84",
       "doi": "10.1126/science.adx4343",
       "item_id": "b7d1ac1fb79b122444d33c04",
-      "retrieved_at": "2026-07-24T07:33:14+00:00",
+      "retrieved_at": "2026-07-24T08:00:27+00:00",
       "source_id": "pubmed",
       "url": "https://pubmed.ncbi.nlm.nih.gov/42490497/"
     },
@@ -319,7 +311,7 @@
       "content_hash": "826ba9bd21ec3c12ba9dc0478717a7975bb606e5b19475d439b959753a416136",
       "doi": "10.1126/science.adx7219",
       "item_id": "be4cbec097dfedd797ba5d70",
-      "retrieved_at": "2026-07-24T07:33:14+00:00",
+      "retrieved_at": "2026-07-24T08:00:27+00:00",
       "source_id": "pubmed",
       "url": "https://pubmed.ncbi.nlm.nih.gov/42490492/"
     },
@@ -327,7 +319,7 @@
       "content_hash": "88c2f33d7e4eb352739a0604f87e30562049aaf320a6cedad0e058f6276bc8dc",
       "doi": "10.1126/science.aek8027",
       "item_id": "359819a8d5afc8e0815c0a3e",
-      "retrieved_at": "2026-07-24T07:33:14+00:00",
+      "retrieved_at": "2026-07-24T08:00:27+00:00",
       "source_id": "pubmed",
       "url": "https://pubmed.ncbi.nlm.nih.gov/42490486/"
     },
@@ -335,7 +327,7 @@
       "content_hash": "e523f9d7c4886f68e06da1d00ff52aa6c79ea7e67c289af0b450df4ac24a9790",
       "doi": "10.1126/science.adz1652",
       "item_id": "5233024fd4b2ef4e0200ca63",
-      "retrieved_at": "2026-07-24T07:33:14+00:00",
+      "retrieved_at": "2026-07-24T08:00:27+00:00",
       "source_id": "pubmed",
       "url": "https://pubmed.ncbi.nlm.nih.gov/42490473/"
     },
@@ -343,7 +335,7 @@
       "content_hash": "c6c268b2bf845c0fcd6745241e57b21708c17bad86beebb6d7976dad23853e79",
       "doi": "10.1126/science.aee1792",
       "item_id": "216bfd1de9a01b0c9a5a24cb",
-      "retrieved_at": "2026-07-24T07:33:14+00:00",
+      "retrieved_at": "2026-07-24T08:00:27+00:00",
       "source_id": "pubmed",
       "url": "https://pubmed.ncbi.nlm.nih.gov/42490461/"
     },
@@ -351,7 +343,7 @@
       "content_hash": "81e9a83fa68ff15fb799c32764a780f8b975ab0aa2be9d8e4fb34e7a46883a9f",
       "doi": "10.1001/jama.2026.13187",
       "item_id": "f926af9dcfaa221e902a2577",
-      "retrieved_at": "2026-07-24T07:33:14+00:00",
+      "retrieved_at": "2026-07-24T08:00:27+00:00",
       "source_id": "pubmed",
       "url": "https://pubmed.ncbi.nlm.nih.gov/42490104/"
     },
@@ -359,7 +351,7 @@
       "content_hash": "965201ffb94d8585c409f9b33b3dd0bd8a44dfd0153338b789bb9c64f2d35ffc",
       "doi": "10.1001/jama.2026.10549",
       "item_id": "00e889d906906ae0c68c1cbd",
-      "retrieved_at": "2026-07-24T07:33:14+00:00",
+      "retrieved_at": "2026-07-24T08:00:27+00:00",
       "source_id": "pubmed",
       "url": "https://pubmed.ncbi.nlm.nih.gov/42490090/"
     },
@@ -367,7 +359,7 @@
       "content_hash": "58df1713a99866be872f1de5168202041d20ec7350cbecc5a7c049fe2dfbe91d",
       "doi": "10.1001/jama.2026.10552",
       "item_id": "808bd7d498c10e3f2b8e3bcf",
-      "retrieved_at": "2026-07-24T07:33:14+00:00",
+      "retrieved_at": "2026-07-24T08:00:27+00:00",
       "source_id": "pubmed",
       "url": "https://pubmed.ncbi.nlm.nih.gov/42490087/"
     },
@@ -375,7 +367,7 @@
       "content_hash": "133c524c8de5eaf70f9f66c179ff2526f93c31a87142b486013b2dcf17dc2512",
       "doi": "10.1001/jama.2026.9119",
       "item_id": "f1648278394cd2afb690c234",
-      "retrieved_at": "2026-07-24T07:33:14+00:00",
+      "retrieved_at": "2026-07-24T08:00:27+00:00",
       "source_id": "pubmed",
       "url": "https://pubmed.ncbi.nlm.nih.gov/42490082/"
     },
@@ -383,7 +375,7 @@
       "content_hash": "fdc1a86d941fbe110c2c065073492fb11ad05e037cc665b954a8f2d74a83092f",
       "doi": "10.1001/jama.2026.10555",
       "item_id": "355d21bd4996ed851ed1171e",
-      "retrieved_at": "2026-07-24T07:33:14+00:00",
+      "retrieved_at": "2026-07-24T08:00:27+00:00",
       "source_id": "pubmed",
       "url": "https://pubmed.ncbi.nlm.nih.gov/42490076/"
     }
@@ -391,50 +383,43 @@
   "raw_artifacts": [
     {
       "bytes": 370646,
-      "r2_key": "research-radar/raw/20260724T075006Z/agency-cdc-ff14ea19af5f.json.gz",
-      "sha256": "ff14ea19af5ff98a76c6c65a8944c33799d06897bc531ff3bc761c790beb8086",
+      "r2_key": "research-radar/raw/30077365585/agency-cdc-2bf4a1485638.json.gz",
+      "sha256": "2bf4a148563866d04524c0a7e8a9d065f6ffd16d7fdb16712786e6402c35645b",
       "source_id": "agency-cdc",
       "uploaded": false
     },
     {
       "bytes": 6397,
-      "r2_key": "research-radar/raw/20260724T075006Z/agency-mmwr-3cec12a19796.json.gz",
-      "sha256": "3cec12a1979668afc2d37944b97ee89ee761bc1cf7b08aece22a3bb516df0d53",
+      "r2_key": "research-radar/raw/30077365585/agency-mmwr-dbfc41a71ced.json.gz",
+      "sha256": "dbfc41a71ceda711a3a8ac3a607a1e893b04b37fc00f940c8bd4b0330b92de2a",
       "source_id": "agency-mmwr",
       "uploaded": false
     },
     {
-      "bytes": 22,
-      "r2_key": "research-radar/raw/20260724T075006Z/agency-ukhsa-5a6e3f21db65.json.gz",
-      "sha256": "5a6e3f21db65e5a298c016e4aeb2290cb0754bc8b18835368ad9a21c94c661d1",
-      "source_id": "agency-ukhsa",
-      "uploaded": false
-    },
-    {
       "bytes": 70954,
-      "r2_key": "research-radar/raw/20260724T075006Z/agency-who-news-8a0d23b06922.json.gz",
-      "sha256": "8a0d23b06922f1863797e4ae8e398bb023ee0c34a9453f69c34afbb9f7805f17",
+      "r2_key": "research-radar/raw/30077365585/agency-who-news-8d51584b12aa.json.gz",
+      "sha256": "8d51584b12aa294b8766e234c3089f0d4727ba5ca805b1685540ad3d9794b44f",
       "source_id": "agency-who-news",
       "uploaded": false
     },
     {
       "bytes": 58676,
-      "r2_key": "research-radar/raw/20260724T075006Z/news-kff-2a781bcbf66b.json.gz",
-      "sha256": "2a781bcbf66b2646c3f99fdbfee88bd59221b496c24cdede9182ff826ce218c1",
+      "r2_key": "research-radar/raw/30077365585/news-kff-7225cb27fae7.json.gz",
+      "sha256": "7225cb27fae7e426c982506c0f38efb7423ad8b37cb585dd619654c7ce32acfc",
       "source_id": "news-kff",
       "uploaded": false
     },
     {
       "bytes": 14089,
-      "r2_key": "research-radar/raw/20260724T075006Z/news-stat-44da7ccc6a77.json.gz",
-      "sha256": "44da7ccc6a7780a180c77be05d676c3a18113f00b11c9bc490482a93136538d6",
+      "r2_key": "research-radar/raw/30077365585/news-stat-f5a35986c605.json.gz",
+      "sha256": "f5a35986c6051b2ef8cbdb1b5ed333a9ab58bfdab7c90a70b617102c51262a87",
       "source_id": "news-stat",
       "uploaded": false
     },
     {
       "bytes": 432066,
-      "r2_key": "research-radar/raw/20260724T075006Z/pubmed-journals-95dc7914cb05.json.gz",
-      "sha256": "95dc7914cb05e3f7147827d503f7842a79ba24850f7fe356c50e0088baebd82b",
+      "r2_key": "research-radar/raw/30077365585/pubmed-journals-654eb66967b1.json.gz",
+      "sha256": "654eb66967b19f8ccd975c5c4a1e7b8bdee6f08289e47ab6a95d318af6e02a2a",
       "source_id": "pubmed-journals",
       "uploaded": false
     }
@@ -443,15 +428,15 @@
   "schema_version": 1,
   "source_statuses": [
     {
-      "checked_at": "2026-07-24T07:51:07+00:00",
-      "error": "ReadTimeout: HTTPSConnectionPool(host='api.gdeltproject.org', port=443): Read timed out. (read timeout=12)",
+      "checked_at": "2026-07-24T08:01:19+00:00",
+      "error": "HTTPError: 429 Client Error: Too Many Requests for url: https://api.gdeltproject.org/api/v2/doc/doc?query=domainis%3Ahealth.gov.au+%28health+OR+medical+OR+disease+OR+outbreak+OR+hospital+OR+vaccine+OR+%22artificial+intelligence%22%29&mode=artlist&format=json&maxrecords=100&timespan=7d&sort=datedesc",
       "item_count": 0,
       "section": "agencies",
       "source_id": "au-health",
       "status": "failed"
     },
     {
-      "checked_at": "2026-07-24T07:50:54+00:00",
+      "checked_at": "2026-07-24T08:00:43+00:00",
       "error": "",
       "item_count": 938,
       "section": "agencies",
@@ -459,7 +444,7 @@
       "status": "success"
     },
     {
-      "checked_at": "2026-07-24T07:51:00+00:00",
+      "checked_at": "2026-07-24T08:00:55+00:00",
       "error": "ReadTimeout: HTTPSConnectionPool(host='api.gdeltproject.org', port=443): Read timed out. (read timeout=12)",
       "item_count": 0,
       "section": "agencies",
@@ -467,7 +452,7 @@
       "status": "failed"
     },
     {
-      "checked_at": "2026-07-24T07:50:55+00:00",
+      "checked_at": "2026-07-24T08:00:55+00:00",
       "error": "HTTPError: 404 Client Error: Not Found for url: https://www.ecdc.europa.eu/en/news-events/rss",
       "item_count": 0,
       "section": "agencies",
@@ -475,7 +460,7 @@
       "status": "failed"
     },
     {
-      "checked_at": "2026-07-24T07:50:59+00:00",
+      "checked_at": "2026-07-24T08:00:54+00:00",
       "error": "ReadTimeout: HTTPSConnectionPool(host='api.gdeltproject.org', port=443): Read timed out. (read timeout=12)",
       "item_count": 0,
       "section": "agencies",
@@ -483,7 +468,7 @@
       "status": "failed"
     },
     {
-      "checked_at": "2026-07-24T07:50:53+00:00",
+      "checked_at": "2026-07-24T08:00:42+00:00",
       "error": "",
       "item_count": 2,
       "section": "agencies",
@@ -491,7 +476,7 @@
       "status": "success"
     },
     {
-      "checked_at": "2026-07-24T07:50:59+00:00",
+      "checked_at": "2026-07-24T08:00:54+00:00",
       "error": "ReadTimeout: HTTPSConnectionPool(host='api.gdeltproject.org', port=443): Read timed out. (read timeout=12)",
       "item_count": 0,
       "section": "agencies",
@@ -499,15 +484,15 @@
       "status": "failed"
     },
     {
-      "checked_at": "2026-07-24T07:51:07+00:00",
-      "error": "HTTPError: 429 Client Error: Too Many Requests for url: https://api.gdeltproject.org/api/v2/doc/doc?query=domainis%3Aengland.nhs.uk+%28health+OR+medical+OR+disease+OR+outbreak+OR+hospital+OR+vaccine+OR+%22artificial+intelligence%22%29&mode=artlist&format=json&maxrecords=100&timespan=7d&sort=datedesc",
+      "checked_at": "2026-07-24T08:00:55+00:00",
+      "error": "ReadTimeout: HTTPSConnectionPool(host='api.gdeltproject.org', port=443): Read timed out. (read timeout=12)",
       "item_count": 0,
       "section": "agencies",
       "source_id": "nhs",
       "status": "failed"
     },
     {
-      "checked_at": "2026-07-24T07:51:11+00:00",
+      "checked_at": "2026-07-24T08:01:07+00:00",
       "error": "ReadTimeout: HTTPSConnectionPool(host='api.gdeltproject.org', port=443): Read timed out. (read timeout=12)",
       "item_count": 0,
       "section": "agencies",
@@ -515,7 +500,7 @@
       "status": "failed"
     },
     {
-      "checked_at": "2026-07-24T07:50:59+00:00",
+      "checked_at": "2026-07-24T08:00:58+00:00",
       "error": "ReadTimeout: HTTPSConnectionPool(host='api.gdeltproject.org', port=443): Read timed out. (read timeout=12)",
       "item_count": 0,
       "section": "agencies",
@@ -523,23 +508,23 @@
       "status": "failed"
     },
     {
-      "checked_at": "2026-07-24T07:51:08+00:00",
-      "error": "",
+      "checked_at": "2026-07-24T08:00:56+00:00",
+      "error": "ReadTimeout: HTTPSConnectionPool(host='api.gdeltproject.org', port=443): Read timed out. (read timeout=12)",
       "item_count": 0,
       "section": "agencies",
       "source_id": "ukhsa",
-      "status": "success"
+      "status": "failed"
     },
     {
-      "checked_at": "2026-07-24T07:50:48+00:00",
-      "error": "SSLError: HTTPSConnectionPool(host='api.gdeltproject.org', port=443): Max retries exceeded with url: /api/v2/doc/doc?query=domainis%3Awho.int+%22Disease+Outbreak+News%22&mode=artlist&format=json&maxrecords=100&timespan=7d&sort=datedesc (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1010)')))",
+      "checked_at": "2026-07-24T08:00:55+00:00",
+      "error": "ReadTimeout: HTTPSConnectionPool(host='api.gdeltproject.org', port=443): Read timed out. (read timeout=12)",
       "item_count": 0,
       "section": "agencies",
       "source_id": "who-don",
       "status": "failed"
     },
     {
-      "checked_at": "2026-07-24T07:50:53+00:00",
+      "checked_at": "2026-07-24T08:00:43+00:00",
       "error": "",
       "item_count": 14,
       "section": "agencies",
@@ -547,7 +532,7 @@
       "status": "success"
     },
     {
-      "checked_at": "2026-07-24T07:50:59+00:00",
+      "checked_at": "2026-07-24T08:00:58+00:00",
       "error": "ReadTimeout: HTTPSConnectionPool(host='api.gdeltproject.org', port=443): Read timed out. (read timeout=12)",
       "item_count": 0,
       "section": "agencies",
@@ -555,7 +540,7 @@
       "status": "failed"
     },
     {
-      "checked_at": "2026-07-24T07:50:47+00:00",
+      "checked_at": "2026-07-24T08:00:42+00:00",
       "error": "",
       "item_count": 62,
       "section": "journals",
@@ -563,7 +548,7 @@
       "status": "success"
     },
     {
-      "checked_at": "2026-07-24T07:50:59+00:00",
+      "checked_at": "2026-07-24T08:00:56+00:00",
       "error": "ReadTimeout: HTTPSConnectionPool(host='api.gdeltproject.org', port=443): Read timed out. (read timeout=12)",
       "item_count": 0,
       "section": "news",
@@ -571,7 +556,7 @@
       "status": "failed"
     },
     {
-      "checked_at": "2026-07-24T07:50:59+00:00",
+      "checked_at": "2026-07-24T08:00:58+00:00",
       "error": "ReadTimeout: HTTPSConnectionPool(host='api.gdeltproject.org', port=443): Read timed out. (read timeout=12)",
       "item_count": 0,
       "section": "news",
@@ -579,7 +564,7 @@
       "status": "failed"
     },
     {
-      "checked_at": "2026-07-24T07:50:50+00:00",
+      "checked_at": "2026-07-24T08:00:42+00:00",
       "error": "",
       "item_count": 3,
       "section": "news",
@@ -587,7 +572,7 @@
       "status": "success"
     },
     {
-      "checked_at": "2026-07-24T07:50:59+00:00",
+      "checked_at": "2026-07-24T08:00:58+00:00",
       "error": "ReadTimeout: HTTPSConnectionPool(host='api.gdeltproject.org', port=443): Read timed out. (read timeout=12)",
       "item_count": 0,
       "section": "news",
@@ -595,7 +580,7 @@
       "status": "failed"
     },
     {
-      "checked_at": "2026-07-24T07:50:48+00:00",
+      "checked_at": "2026-07-24T08:00:42+00:00",
       "error": "",
       "item_count": 9,
       "section": "news",
@@ -603,7 +588,7 @@
       "status": "success"
     },
     {
-      "checked_at": "2026-07-24T07:50:59+00:00",
+      "checked_at": "2026-07-24T08:00:56+00:00",
       "error": "ReadTimeout: HTTPSConnectionPool(host='api.gdeltproject.org', port=443): Read timed out. (read timeout=12)",
       "item_count": 0,
       "section": "news",
