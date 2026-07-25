@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from research_radar.ai import analyze_cross_board
+from research_radar.ai import _contains_draft_markers, analyze_cross_board
 from research_radar.models import Hotspot, ResearchItem
 
 
@@ -86,3 +86,12 @@ def test_deepseek_json_is_rendered_with_traceable_evidence(monkeypatch, tmp_path
     assert "N1 · News" in result.markdown
     assert "BAD" not in result.markdown
     assert "test-key" not in str(result.raw)
+
+
+def test_draft_markers_are_rejected():
+    assert _contains_draft_markers(
+        {"epidemiology_implications": [{"text": "修正：删除此条"}]}
+    )
+    assert not _contains_draft_markers(
+        {"epidemiology_implications": [{"text": "需进一步验证该监测信号。"}]}
+    )

@@ -12,13 +12,20 @@ import requests
 from .models import Hotspot, ResearchItem
 
 
-PROMPT_VERSION = "cross-board-zh-v2"
+PROMPT_VERSION = "cross-board-zh-v3"
 EXPECTED_SECTIONS = (
     "cross_board_themes",
     "epidemiology_implications",
     "research_questions",
     "candidate_methods",
     "evidence_limitations",
+)
+FORBIDDEN_DRAFT_MARKERS = (
+    "删除此条",
+    "修正：",
+    "改为：",
+    "自检发现",
+    "此处应为",
 )
 
 
@@ -167,6 +174,11 @@ def _parse_json(content: str) -> dict[str, Any]:
     return payload
 
 
+def _contains_draft_markers(payload: dict[str, Any]) -> bool:
+    text = json.dumps(payload, ensure_ascii=False)
+    return any(marker in text for marker in FORBIDDEN_DRAFT_MARKERS)
+
+
 def analyze_cross_board(
     root: Path,
     settings: dict[str, Any],
@@ -200,28 +212,49 @@ def analyze_cross_board(
     )
     analysis_input, references = _analysis_input(hotspots, news, agencies, journals)
     input_json = json.dumps(analysis_input, ensure_ascii=False, separators=(",", ":"))
+    messages = [
+        {"role": "system", "content": prompt},
+        {"role": "user", "content": f"以下是本期结构化输入，请输出 json：\n{input_json}"},
+    ]
     request_body = {
         "model": model,
-        "messages": [
-            {"role": "system", "content": prompt},
-            {"role": "user", "content": f"以下是本期结构化输入，请输出 json：\n{input_json}"},
-        ],
+        "messages": messages,
         "thinking": {"type": "disabled"},
         "response_format": {"type": "json_object"},
         "max_tokens": int(ai.get("max_tokens", 2400)),
         "stream": False,
     }
     try:
-        response = requests.post(
-            ai.get("endpoint", "https://api.deepseek.com/chat/completions"),
-            headers={"Authorization": f"Bearer {api_key}", "Content-Type": "application/json"},
-            json=request_body,
-            timeout=int(ai.get("timeout_seconds", 120)),
-        )
-        response.raise_for_status()
-        response_payload = response.json()
-        content = response_payload["choices"][0]["message"]["content"]
-        parsed = _parse_json(content)
+        response_payload: dict[str, Any] = {}
+        parsed: dict[str, Any] = {}
+        for attempt in range(2):
+            response = requests.post(
+                ai.get("endpoint", "https://api.deepseek.com/chat/completions"),
+                headers={"Authorization": f"Bearer {api_key}", "Content-Type": "application/json"},
+                json=request_body,
+                timeout=int(ai.get("timeout_seconds", 120)),
+            )
+            response.raise_for_status()
+            response_payload = response.json()
+            content = response_payload["choices"][0]["message"]["content"]
+            parsed = _parse_json(content)
+            if not _contains_draft_markers(parsed):
+                break
+            if attempt == 1:
+                raise ValueError("DeepSeek response contains draft self-correction markers")
+            messages.extend(
+                [
+                    {"role": "assistant", "content": content},
+                    {
+                        "role": "user",
+                        "content": (
+                            "上一版包含“修正/删除此条/改为”等草稿自检痕迹。"
+                            "请在内部完成自检，只返回清理后的最终 JSON；"
+                            "无法由输入支持的整条内容直接省略。"
+                        ),
+                    },
+                ]
+            )
         markdown = _render(parsed, references)
         if not markdown:
             raise ValueError("DeepSeek returned no renderable analysis")
