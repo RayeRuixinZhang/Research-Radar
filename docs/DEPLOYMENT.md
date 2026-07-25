@@ -5,6 +5,7 @@
 | Secret | 必需 | 用途 |
 |---|---:|---|
 | `OPENALEX_API_KEY` | 建议 | OpenAlex 免费 API Key |
+| `DEEPSEEK_API_KEY` | 板块5必需 | DeepSeek API Key，仅用于跨板块科研启发 |
 | `NCBI_API_KEY` | 否 | 提高 PubMed E-utilities 速率 |
 | `S3_BUCKET_NAME` | R2 时必需 | 建议 `research-radar-data` |
 | `S3_ACCESS_KEY_ID` | R2 时必需 | R2 Token Access Key |
@@ -18,6 +19,18 @@
 | `EMAIL_SMTP_PORT` | 否 | 默认 465 |
 
 Secrets 不得写入配置文件、报告或 manifest。
+
+## DeepSeek
+
+1. 在 DeepSeek 开放平台创建 API Key。
+2. 仓库 **Settings → Secrets and variables → Actions → New repository secret**。
+3. 名称必须填写 `DEEPSEEK_API_KEY`，值粘贴 API Key。
+4. 项目默认使用 `deepseek-v4-flash` 非思考模式和 JSON Output，以控制费用并稳定解析。
+
+板块5只向模型发送板块1–4已经公开展示的标题、短摘要、标签和来源标识，不发送
+R2密钥、邮箱密码或其他 Secrets。AI请求与响应会去除认证信息后归档到R2，manifest
+仅保存模型、提示词版本、输入哈希、条目数和token用量。模型不可用时，前四板块、
+邮件和Pages仍会正常生成。
 
 ## Pages
 

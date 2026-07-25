@@ -5,6 +5,7 @@ from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 from typing import Iterable
 
+from .ai import analyze_cross_board
 from .configuration import Config
 from .mailer import send_report
 from .models import ResearchItem, SourceStatus
@@ -164,13 +165,46 @@ class Pipeline:
         for item in [*hotspot_items, *news, *agencies, *journals]:
             item.source_name = source_names.get(item.source_id, item.source_id)
         statuses = self.storage.latest_statuses()
+        previous_artifacts = self.storage.latest_raw_artifacts()
+        analysis = analyze_cross_board(
+            self.config.root, settings, hotspots, news, agencies, journals
+        )
+        ai_success = analysis.metadata.get("status") == "success"
+        ai_status = SourceStatus(
+            "deepseek",
+            "ai_analysis",
+            "success" if ai_success else "degraded",
+            1 if ai_success else 0,
+            analysis.metadata.get("error", analysis.metadata.get("status", "")),
+        )
+        self.storage.save_statuses(self.run_id, [ai_status])
+        statuses = [
+            status for status in statuses
+            if not (status.source_id == "deepseek" and status.section == "ai_analysis")
+        ] + [ai_status]
+        if analysis.raw:
+            self._archive("ai-cross-board", analysis.raw)
         markdown = build_markdown(
-            hotspots, news, agencies, journals, statuses, self.config.scimago_metadata()
+            hotspots,
+            news,
+            agencies,
+            journals,
+            statuses,
+            self.config.scimago_metadata(),
+            analysis.markdown,
         )
         all_items = [*hotspot_items, *news, *agencies, *journals]
-        raw_artifacts = self.raw_artifacts or self.storage.latest_raw_artifacts()
+        raw_artifacts = {
+            (artifact["source_id"], artifact["sha256"]): artifact
+            for artifact in [*previous_artifacts, *self.raw_artifacts]
+        }.values()
         paths = write_report(
-            self.config.root, markdown, all_items, statuses, raw_artifacts
+            self.config.root,
+            markdown,
+            all_items,
+            statuses,
+            list(raw_artifacts),
+            analysis.metadata,
         )
         if send_email:
             send_report(paths[0], paths[2])

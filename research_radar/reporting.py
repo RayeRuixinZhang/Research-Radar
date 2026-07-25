@@ -51,6 +51,7 @@ def build_markdown(
     journals: list[ResearchItem],
     statuses: list[SourceStatus],
     scimago_metadata: dict,
+    ai_markdown: str = "_AI 分析尚未配置。_",
 ) -> str:
     key, _, _ = report_key()
     lines = [
@@ -88,7 +89,7 @@ def build_markdown(
             "",
             "## 5. 跨板块科研启发",
             "",
-            "_AI 分析尚未配置。板块 1–4 的结构化输入与追溯信息已保留，可在后续配置任意兼容模型后启用。_",
+            ai_markdown,
             "",
             "## 数据源运行状态",
             "",
@@ -162,6 +163,7 @@ def write_report(
     items: list[ResearchItem],
     statuses: list[SourceStatus],
     raw_artifacts: list[dict],
+    ai_metadata: dict | None = None,
 ) -> tuple[Path, Path, Path]:
     key, year, _ = report_key()
     report_path = root / "reports" / str(year) / f"{key}.md"
@@ -188,6 +190,7 @@ def write_report(
         ],
         "source_statuses": [status.to_dict() for status in statuses],
         "raw_artifacts": raw_artifacts,
+        "ai_analysis": ai_metadata or {"status": "not_configured"},
     }
     manifest_path.write_text(json.dumps(manifest, ensure_ascii=False, indent=2, sort_keys=True), encoding="utf-8")
     site = root / "_site"
