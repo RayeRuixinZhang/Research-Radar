@@ -51,7 +51,13 @@ class PubMedSource:
             values["api_key"] = self.api_key
         return values
 
-    def search(self, days: int, journal_aliases: Iterable[str] | None = None, retmax: int = 500) -> tuple[list[str], dict]:
+    def search(
+        self,
+        days: int,
+        journal_aliases: Iterable[str] | None = None,
+        retmax: int = 500,
+        extra_term: str = "",
+    ) -> tuple[list[str], dict]:
         start = date.today() - timedelta(days=days)
         date_term = f'("{start:%Y/%m/%d}"[Date - Publication] : "{date.today():%Y/%m/%d}"[Date - Publication])'
         if journal_aliases:
@@ -59,6 +65,8 @@ class PubMedSource:
             query = f"{date_term} AND ({journal_term})"
         else:
             query = f"{date_term} AND medline[sb]"
+        if extra_term.strip():
+            query = f"{query} AND {extra_term.strip()}"
         params = self._params(
             {"db": "pubmed", "term": query, "retmode": "json", "retmax": min(retmax, 10000), "sort": "pub date"}
         )
@@ -122,8 +130,14 @@ class PubMedSource:
                 time.sleep(0.35 if self.api_key else 0.7)
         return items, raw_batches
 
-    def collect(self, days: int, journal_aliases: Iterable[str] | None = None, retmax: int = 500) -> tuple[list[ResearchItem], dict]:
-        pmids, search_payload = self.search(days, journal_aliases, retmax)
+    def collect(
+        self,
+        days: int,
+        journal_aliases: Iterable[str] | None = None,
+        retmax: int = 500,
+        extra_term: str = "",
+    ) -> tuple[list[ResearchItem], dict]:
+        pmids, search_payload = self.search(days, journal_aliases, retmax, extra_term)
         items, xml_batches = self.fetch(pmids)
         return items, {"search": search_payload, "fetch_xml": xml_batches}
 

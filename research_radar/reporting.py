@@ -52,18 +52,34 @@ def build_markdown(
     statuses: list[SourceStatus],
     scimago_metadata: dict,
     ai_markdown: str = "_AI 分析尚未配置。_",
+    hotspot_scope: dict | None = None,
 ) -> str:
     key, _, _ = report_key()
+    scope = hotspot_scope or {}
     lines = [
         f"# Research Radar 科研周报 · {key}",
         "",
         f"> 生成时间：{datetime.now(timezone.utc).replace(microsecond=0).isoformat()}",
         "> 数据口径：SCImago Medicine Q1（非 JCR Q1）。标题与摘要保留原始语言。",
+        (
+            f"> 热点专题：{scope.get('label')}（版本 `{scope.get('version')}`；"
+            "PubMed/MEDLINE近365天专题结果最多2,000条后再作Q1与内容筛选）。"
+            if scope
+            else "> 热点专题：未提供专题范围元数据。"
+        ),
         "> 本报告不含图片，不转载新闻或论文全文。",
         "",
-        "## 1. 近一年科研热点",
+        "## 1. 重点期刊近期论文",
         "",
     ]
+    lines.extend(_paper_line(item) for item in journals) if journals else lines.append(
+        "_本周未检索到符合条件且带 DOI 的重点期刊论文。_"
+    )
+    lines.extend(["", "## 2. 医学与公共卫生新闻", ""])
+    lines.extend(_linked_line(item) for item in news) if news else lines.append("_本周未检索到符合条件的新闻。_")
+    lines.extend(["", "## 3. 世界及主要国家卫生机构动态", ""])
+    lines.extend(_linked_line(item) for item in agencies) if agencies else lines.append("_本周未检索到符合条件的机构动态。_")
+    lines.extend(["", "## 4. 近一年专题科研热点", ""])
     if not hotspots:
         status = scimago_metadata.get("status", "unknown")
         lines.append(f"_暂无可计算热点。SCImago 参考数据状态：`{status}`。_")
@@ -78,12 +94,6 @@ def build_markdown(
         )
         lines.extend(_paper_line(paper) for paper in hotspot.papers)
         lines.append("")
-    lines.extend(["## 2. 医学与公共卫生新闻", ""])
-    lines.extend(_linked_line(item) for item in news) if news else lines.append("_本周未检索到符合条件的新闻。_")
-    lines.extend(["", "## 3. 世界及主要国家卫生机构动态", ""])
-    lines.extend(_linked_line(item) for item in agencies) if agencies else lines.append("_本周未检索到符合条件的机构动态。_")
-    lines.extend(["", "## 4. 重点期刊近期论文", ""])
-    lines.extend(_paper_line(item) for item in journals) if journals else lines.append("_本周未检索到符合条件且带 DOI 的重点期刊论文。_")
     lines.extend(
         [
             "",
@@ -164,6 +174,7 @@ def write_report(
     statuses: list[SourceStatus],
     raw_artifacts: list[dict],
     ai_metadata: dict | None = None,
+    hotspot_scope: dict | None = None,
 ) -> tuple[Path, Path, Path]:
     key, year, _ = report_key()
     report_path = root / "reports" / str(year) / f"{key}.md"
@@ -191,6 +202,7 @@ def write_report(
         "source_statuses": [status.to_dict() for status in statuses],
         "raw_artifacts": raw_artifacts,
         "ai_analysis": ai_metadata or {"status": "not_configured"},
+        "hotspot_scope": hotspot_scope or {},
     }
     manifest_path.write_text(json.dumps(manifest, ensure_ascii=False, indent=2, sort_keys=True), encoding="utf-8")
     site = root / "_site"

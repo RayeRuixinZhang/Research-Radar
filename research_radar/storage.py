@@ -117,6 +117,11 @@ class Storage:
                 )
         return len(rows)
 
+    def delete_items(self, kind: str) -> int:
+        with self.connect() as con:
+            cursor = con.execute("DELETE FROM items WHERE kind = ?", (kind,))
+            return cursor.rowcount
+
     def save_statuses(self, run_id: str, statuses: Iterable[SourceStatus]) -> None:
         with self.connect() as con:
             for status in statuses:

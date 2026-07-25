@@ -60,3 +60,19 @@ def classify(text: str, topic_config: dict) -> list[str]:
         if any(term.casefold() in folded for term in definition.get("terms", [])):
             labels.append(key)
     return labels
+
+
+def matches_hotspot_scope(item, scope_config: dict) -> bool:
+    """Apply the transparent second-stage scope filter to a PubMed item."""
+    allowed_categories = set(scope_config.get("include_categories", []))
+    if allowed_categories.intersection(item.categories):
+        return True
+    text = " ".join(
+        [
+            item.title or "",
+            item.summary or "",
+            " ".join(item.mesh_terms),
+            item.primary_topic or "",
+        ]
+    ).casefold()
+    return any(term.casefold() in text for term in scope_config.get("include_terms", []))

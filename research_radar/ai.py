@@ -88,10 +88,10 @@ def _analysis_input(
 
     return (
         {
-            "hotspots": hotspot_payload,
+            "priority_journals": items_payload("J", journals),
             "news": items_payload("N", news),
             "health_agencies": items_payload("A", agencies),
-            "priority_journals": items_payload("J", journals),
+            "hotspots": hotspot_payload,
         },
         references,
     )
@@ -119,7 +119,7 @@ def _evidence(values: Any, references: dict[str, dict[str, str]]) -> str:
 def _render(payload: dict[str, Any], references: dict[str, dict[str, str]]) -> str:
     lines: list[str] = []
     sections = [
-        ("### 5.1 跨板块主题", "cross_board_themes"),
+        ("### 5.1 四板块综合研判", "cross_board_themes"),
         ("### 5.2 对传染病流行病学的启示", "epidemiology_implications"),
         ("### 5.3 可检验的数据驱动研究问题", "research_questions"),
         ("### 5.4 候选研究方法与数据需求", "candidate_methods"),

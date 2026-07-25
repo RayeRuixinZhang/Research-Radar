@@ -25,6 +25,79 @@ hotspot_score:
   minimum_papers: 5
   minimum_journals: 3
 
+hotspot_scope:
+  version: infectious-epidemiology-v1
+  label: 流行病学与感染相关医学专题
+  pubmed_query: >-
+    (
+      "Epidemiology"[MeSH Terms] OR epidemiolog*[Title/Abstract]
+      OR "Communicable Diseases"[MeSH Terms] OR infectious[Title/Abstract]
+      OR infection*[Title/Abstract] OR outbreak*[Title/Abstract]
+      OR epidemic*[Title/Abstract] OR pandemic*[Title/Abstract]
+      OR pathogen*[Title/Abstract]
+      OR "Public Health"[MeSH Terms] OR "public health"[Title/Abstract]
+      OR "Population Health"[Title/Abstract]
+      OR "Pediatrics"[MeSH Terms] OR pediatric*[Title/Abstract]
+      OR paediatric*[Title/Abstract] OR child*[Title/Abstract]
+      OR infant*[Title/Abstract] OR neonatal[Title/Abstract]
+      OR "Respiratory Tract Diseases"[MeSH Terms] OR respiratory[Title/Abstract]
+      OR pneumonia[Title/Abstract] OR influenza[Title/Abstract]
+      OR asthma[Title/Abstract] OR COPD[Title/Abstract]
+      OR "Vaccines"[MeSH Terms] OR vaccine*[Title/Abstract]
+      OR vaccination[Title/Abstract] OR immunization[Title/Abstract]
+      OR immunisation[Title/Abstract]
+      OR "Cross Infection"[MeSH Terms] OR "infection control"[Title/Abstract]
+      OR "healthcare-associated infection"[Title/Abstract]
+      OR "hospital-acquired infection"[Title/Abstract]
+      OR "Drug Resistance, Microbial"[MeSH Terms]
+      OR "antimicrobial resistance"[Title/Abstract]
+      OR surveillance[Title/Abstract] OR "disease monitoring"[Title/Abstract]
+      OR (
+        ("artificial intelligence"[Title/Abstract] OR "machine learning"[Title/Abstract]
+         OR "predictive model"[Title/Abstract])
+        AND (disease[Title/Abstract] OR infection*[Title/Abstract]
+             OR outbreak*[Title/Abstract] OR surveillance[Title/Abstract])
+      )
+    )
+  include_categories:
+    - public_health
+    - infectious_disease
+    - pediatrics
+    - respiratory
+    - infection_control
+    - medical_ai
+  include_terms:
+    - epidemiolog
+    - infectious
+    - infection
+    - outbreak
+    - epidemic
+    - pandemic
+    - pathogen
+    - public health
+    - population health
+    - pediatric
+    - paediatric
+    - child
+    - infant
+    - neonatal
+    - respiratory
+    - pneumonia
+    - influenza
+    - asthma
+    - copd
+    - vaccine
+    - vaccination
+    - immunization
+    - immunisation
+    - infection control
+    - healthcare-associated
+    - hospital-acquired
+    - antimicrobial resistance
+    - surveillance
+    - disease monitoring
+    - predictive model
+
 storage:
   sqlite_path: output/research-radar.db
   reports_dir: reports

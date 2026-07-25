@@ -9,6 +9,7 @@ from .ai import analyze_cross_board
 from .configuration import Config
 from .mailer import send_report
 from .models import ResearchItem, SourceStatus
+from .normalize import matches_hotspot_scope
 from .remote import RawArchive
 from .reporting import build_markdown, write_report
 from .scoring import score_hotspots
@@ -62,12 +63,21 @@ class Pipeline:
             self.storage.save_statuses(self.run_id, [status])
             self.archive.upload_database(self.storage.path)
             return 0
+        scope = self.config.settings["hotspot_scope"]
         pubmed = PubMedSource(self.config.topics)
-        items, raw = pubmed.collect(days=days, journal_aliases=None, retmax=retmax)
+        items, raw = pubmed.collect(
+            days=days,
+            journal_aliases=None,
+            retmax=retmax,
+            extra_term=scope["pubmed_query"],
+        )
         self._archive("pubmed-hotspot", raw)
         items = [
             item for item in items
-            if item.doi and not item.is_retracted and q1.intersection(item.issns)
+            if item.doi
+            and not item.is_retracted
+            and q1.intersection(item.issns)
+            and matches_hotspot_scope(item, scope)
         ]
         EuropePMCEnricher().enrich(items, max_items=100)
         openalex_raw = OpenAlexEnricher().enrich(items, max_items=retmax)
@@ -76,6 +86,7 @@ class Pipeline:
         eligible = []
         for item in items:
             item.kind = "hotspot_paper"
+            item.provenance["hotspot_scope_version"] = scope["version"]
             if item.doi and not item.is_retracted and q1.intersection(item.issns):
                 eligible.append(item.finalize())
         status = SourceStatus(
@@ -85,6 +96,7 @@ class Pipeline:
             len(eligible),
             "" if q1 else "SCImago Q1 ISSN reference is empty",
         )
+        self.storage.delete_items("hotspot_paper")
         self.storage.upsert_items(eligible)
         self.storage.save_statuses(self.run_id, [status])
         self.archive.upload_database(self.storage.path)
@@ -149,7 +161,13 @@ class Pipeline:
 
     def build_report(self, send_email: bool = False) -> tuple[Path, Path, Path]:
         settings = self.config.settings
-        hotspot_items = self.storage.load_items("hotspot_paper", _since(settings["windows"]["hotspot_days"]))
+        hotspot_items = [
+            item
+            for item in self.storage.load_items(
+                "hotspot_paper", _since(settings["windows"]["hotspot_days"])
+            )
+            if matches_hotspot_scope(item, settings["hotspot_scope"])
+        ]
         hotspots = score_hotspots(hotspot_items, settings, self.config.scimago_issns())
         cutoff = _since(settings["windows"]["weekly_days"])
         news = self.storage.load_items("news", cutoff)[: settings["limits"]["news"]]
@@ -192,6 +210,7 @@ class Pipeline:
             statuses,
             self.config.scimago_metadata(),
             analysis.markdown,
+            settings["hotspot_scope"],
         )
         all_items = [*hotspot_items, *news, *agencies, *journals]
         raw_artifacts = {
@@ -205,6 +224,15 @@ class Pipeline:
             statuses,
             list(raw_artifacts),
             analysis.metadata,
+            {
+                "version": settings["hotspot_scope"]["version"],
+                "label": settings["hotspot_scope"]["label"],
+                "window_days": settings["windows"]["hotspot_days"],
+                "pubmed_retmax": 2000,
+                "pubmed_query": settings["hotspot_scope"]["pubmed_query"],
+                "second_stage_categories": settings["hotspot_scope"]["include_categories"],
+                "second_stage_terms": settings["hotspot_scope"]["include_terms"],
+            },
         )
         if send_email:
             send_report(paths[0], paths[2])
