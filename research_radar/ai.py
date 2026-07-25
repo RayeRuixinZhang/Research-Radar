@@ -12,7 +12,7 @@ import requests
 from .models import Hotspot, ResearchItem
 
 
-PROMPT_VERSION = "cross-board-zh-v1"
+PROMPT_VERSION = "cross-board-zh-v2"
 EXPECTED_SECTIONS = (
     "cross_board_themes",
     "epidemiology_implications",
@@ -29,9 +29,10 @@ class AIAnalysis:
     raw: dict[str, Any] | None = None
 
 
-def _item_payload(ref: str, item: ResearchItem) -> dict[str, Any]:
+def _item_payload(ref: str, item: ResearchItem, board: int) -> dict[str, Any]:
     return {
         "ref": ref,
+        "board": board,
         "title": item.title,
         "summary": item.summary,
         "source": item.source_name or item.source_id,
@@ -60,7 +61,7 @@ def _analysis_input(
         papers = []
         for paper_index, paper in enumerate(hotspot.papers, 1):
             paper_ref = f"{ref}-P{paper_index}"
-            papers.append(_item_payload(paper_ref, paper))
+            papers.append(_item_payload(paper_ref, paper, 4))
             references[paper_ref] = {
                 "title": paper.title,
                 "url": f"https://doi.org/{paper.doi}" if paper.doi else paper.url,
@@ -68,6 +69,7 @@ def _analysis_input(
         hotspot_payload.append(
             {
                 "ref": ref,
+                "board": 4,
                 "topic": hotspot.topic,
                 "score": hotspot.score,
                 "paper_count": hotspot.paper_count,
@@ -77,20 +79,22 @@ def _analysis_input(
             }
         )
 
-    def items_payload(prefix: str, items: list[ResearchItem]) -> list[dict[str, Any]]:
+    def items_payload(
+        prefix: str, board: int, items: list[ResearchItem]
+    ) -> list[dict[str, Any]]:
         payload = []
         for index, item in enumerate(items, 1):
             ref = f"{prefix}{index}"
-            payload.append(_item_payload(ref, item))
+            payload.append(_item_payload(ref, item, board))
             url = f"https://doi.org/{item.doi}" if item.doi else item.url
             references[ref] = {"title": item.title, "url": url}
         return payload
 
     return (
         {
-            "priority_journals": items_payload("J", journals),
-            "news": items_payload("N", news),
-            "health_agencies": items_payload("A", agencies),
+            "priority_journals": items_payload("J", 1, journals),
+            "news": items_payload("N", 2, news),
+            "health_agencies": items_payload("A", 3, agencies),
             "hotspots": hotspot_payload,
         },
         references,

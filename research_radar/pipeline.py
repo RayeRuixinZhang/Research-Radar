@@ -193,7 +193,9 @@ class Pipeline:
             "ai_analysis",
             "success" if ai_success else "degraded",
             1 if ai_success else 0,
-            analysis.metadata.get("error", analysis.metadata.get("status", "")),
+            "" if ai_success else analysis.metadata.get(
+                "error", analysis.metadata.get("status", "")
+            ),
         )
         self.storage.save_statuses(self.run_id, [ai_status])
         statuses = [

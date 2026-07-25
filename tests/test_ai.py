@@ -73,6 +73,8 @@ def test_deepseek_json_is_rendered_with_traceable_evidence(monkeypatch, tmp_path
         assert json["model"] == "deepseek-v4-flash"
         assert json["thinking"] == {"type": "disabled"}
         assert json["response_format"] == {"type": "json_object"}
+        assert '"board":2' in json["messages"][1]["content"]
+        assert '"board":4' in json["messages"][1]["content"]
         return Response()
 
     monkeypatch.setattr("research_radar.ai.requests.post", fake_post)
