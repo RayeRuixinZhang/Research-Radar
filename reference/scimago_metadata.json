@@ -1,12 +1,15 @@
 {
-  "status": "template-awaiting-official-export",
+  "status": "ready",
   "metric": "SCImago Journal Rank",
   "area": "Medicine",
   "quartile": "Q1",
   "is_jcr": false,
   "source_url": "https://www.scimagojr.com/journalrank.php?area=2700",
-  "data_year": null,
-  "downloaded_at": null,
-  "sha256": null
+  "data_year": 2025,
+  "downloaded_at": "2026-07-25T01:23:49.676977+00:00",
+  "source_filename": "scimagojr 2025 Subject Area - Medicine.csv",
+  "sha256": "d77216f89986c3dbd7faaa314a9121958bb458be0bd478b1d331e3b6fa1a0fad",
+  "journal_count": 2091,
+  "issn_count": 3669,
+  "transform_version": "scimago-import-v1"
 }
-
