@@ -26,8 +26,31 @@ Secrets 不得写入配置文件、报告或 manifest。
 
 ## SCImago
 
-从 SCImago Journal & Country Rank 下载最新版 Medicine 数据，筛选 `SJR Best
-Quartile == Q1`，按 `reference/scimago_q1_medicine.csv` 的表头保存。运行
-`python -m research_radar doctor` 检查。原始下载文件宜保存在 R2，仓库只
-保存导入清单及 `reference/scimago_metadata.json` 的来源与 SHA-256。
+1. 打开 [SCImago Medicine 排名页](https://www.scimagojr.com/journalrank.php?area=2700)，
+   选择网站提供的最新年份并下载 CSV。
+2. 将原始文件放到本地 `incoming/`（该目录已被 Git 忽略，不会误传到公开仓库）。
+3. 直接导入，无需手工筛选或修改列名：
 
+   ```bash
+   python -m research_radar import-scimago incoming/scimagojr.csv
+   ```
+
+   若文件没有年份列且文件名也不含年份，增加 `--year 2025`。
+4. 运行 `python -m research_radar doctor`，确认 `scimago_q1_issns` 大于 0。
+
+导入器会自动筛选 `SJR Best Quartile == Q1`、只保留 Medicine、规范化 ISSN，
+并把来源文件名、年份、SHA-256、期刊数和 ISSN 数写入
+`reference/scimago_metadata.json`。公开仓库仅保存派生清单和追溯元数据；
+原始官方 CSV 不提交 Git。
+
+> SCImago Q1 是本项目首版的可公开复核替代口径，不等同于 JCR Q1。
+
+## OpenAlex
+
+1. 登录 [OpenAlex API 设置页](https://openalex.org/settings/api)并创建免费 API Key。
+2. 仓库 **Settings → Secrets and variables → Actions → New repository secret**。
+3. 名称必须填写 `OPENALEX_API_KEY`，值粘贴刚创建的 Key。
+4. 不要把 Key 写入代码、CSV、Issue、日志或聊天消息。
+
+OpenAlex 当前为 API Key 提供每日免费额度；项目使用它补充主题与引用指标。
+未配置时周报仍可生成，但板块 1 的热点评分会缺少 OpenAlex 增强信息。

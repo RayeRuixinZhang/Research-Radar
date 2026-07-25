@@ -9,6 +9,7 @@ import sys
 from .configuration import Config
 from .pipeline import Pipeline, _run_id
 from .remote import RawArchive
+from .scimago import import_scimago
 from .storage import Storage
 
 
@@ -53,6 +54,9 @@ def parser() -> argparse.ArgumentParser:
     collect.add_argument("--days", type=int, default=7)
     report = sub.add_parser("build-report", help="Build Markdown, manifest and static site")
     report.add_argument("--send-email", action="store_true")
+    scimago = sub.add_parser("import-scimago", help="Import an official SCImago Medicine CSV export")
+    scimago.add_argument("csv_path", type=Path)
+    scimago.add_argument("--year", type=int, help="Data year when it cannot be inferred from the CSV")
     sub.add_parser("doctor", help="Validate configuration and optional integrations")
     return value
 
@@ -60,6 +64,10 @@ def parser() -> argparse.ArgumentParser:
 def main(argv: list[str] | None = None) -> int:
     args = parser().parse_args(argv)
     root = args.root.resolve()
+    if args.command == "import-scimago":
+        metadata = import_scimago(args.csv_path, root, args.year)
+        print(json.dumps(metadata, ensure_ascii=False, indent=2))
+        return 0
     config, _storage, _archive, pipeline = _runtime(root)
     if args.command == "doctor":
         return doctor(config)
@@ -76,4 +84,3 @@ def main(argv: list[str] | None = None) -> int:
         print("\n".join(str(path) for path in paths))
         return 0
     return 2
-

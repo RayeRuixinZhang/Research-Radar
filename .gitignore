@@ -9,3 +9,4 @@ build/
 output/
 _site/
 .env
+incoming/
