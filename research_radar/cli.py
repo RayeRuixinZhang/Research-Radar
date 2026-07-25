@@ -34,12 +34,17 @@ def doctor(config: Config) -> int:
         "r2_configured": all(os.getenv(key) for key in ("S3_BUCKET_NAME", "S3_ACCESS_KEY_ID", "S3_SECRET_ACCESS_KEY")),
         "email_configured": all(os.getenv(key) for key in ("EMAIL_FROM", "EMAIL_PASSWORD", "EMAIL_TO")),
         "ai_enabled": bool(config.settings.get("ai", {}).get("enabled")),
+        "ai_provider": config.settings.get("ai", {}).get("provider", ""),
+        "ai_model": config.settings.get("ai", {}).get("model", ""),
+        "deepseek_key": bool(os.getenv("DEEPSEEK_API_KEY")),
     }
     print(json.dumps(checks, ensure_ascii=False, indent=2))
     if checks["scimago_q1_issns"] == 0:
         print("WARNING: SCImago Q1 reference is empty; hotspot board will be marked unavailable.")
     if not checks["openalex_key"]:
         print("WARNING: OPENALEX_API_KEY is missing; citation/topic enrichment will be skipped.")
+    if checks["ai_enabled"] and not checks["deepseek_key"]:
+        print("WARNING: DEEPSEEK_API_KEY is missing; board 5 will use the safe fallback.")
     return 0
 
 

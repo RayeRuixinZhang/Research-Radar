@@ -33,8 +33,11 @@ def test_golden_report_and_manifest(tmp_path: Path):
     assert "DOI: 10.1000/test" in markdown
     assert "医疗" in markdown
     assert "![" not in markdown
-    report, manifest, site = write_report(tmp_path, markdown, [news, agency, paper], [status], [])
+    report, manifest, site = write_report(
+        tmp_path, markdown, [news, agency, paper], [status], [], {"status": "disabled"}
+    )
     assert report.exists() and site.exists()
     payload = json.loads(manifest.read_text(encoding="utf-8"))
     assert len(payload["items"]) == 3
     assert all(value["content_hash"] for value in payload["items"])
+    assert payload["ai_analysis"]["status"] == "disabled"

@@ -33,7 +33,10 @@ storage:
   r2_prefix: research-radar
 
 ai:
-  enabled: false
-  provider: ""
-  model: ""
-
+  enabled: true
+  provider: deepseek
+  model: deepseek-v4-flash
+  endpoint: https://api.deepseek.com/chat/completions
+  prompt_path: prompts/cross_board_analysis_zh.md
+  max_tokens: 2400
+  timeout_seconds: 120
