@@ -2,31 +2,31 @@
   "ai_analysis": {
     "enabled": true,
     "input_counts": {
-      "agencies": 5,
+      "agencies": 4,
       "hotspots": 10,
       "journals": 30,
       "news": 12
     },
-    "input_sha256": "8a3f3a2d17a7abc3c8bf2117e906d7333d4953dd3db0db85576efa7fccef3e76",
+    "input_sha256": "e40dc9f1fefa1ebe13aa324a318a1c363030b733a93bf78cc212c131fd73599e",
     "model": "deepseek-v4-flash",
     "prompt_version": "cross-board-zh-v3",
     "provider": "deepseek",
-    "response_id": "eb0f1664-88f6-4f7b-80ff-991001bc1945",
+    "response_id": "957fea55-d62f-40df-a462-a4d0d1023a44",
     "status": "success",
     "usage": {
-      "completion_tokens": 1751,
+      "completion_tokens": 2145,
       "prompt_cache_hit_tokens": 0,
-      "prompt_cache_miss_tokens": 10946,
-      "prompt_tokens": 10946,
+      "prompt_cache_miss_tokens": 10939,
+      "prompt_tokens": 10939,
       "prompt_tokens_details": {
         "cached_tokens": 0
       },
-      "total_tokens": 12697
+      "total_tokens": 13084
     }
   },
-  "generated_at": "2026-07-25T02:33:21+00:00",
-  "git_commit": "2cc854f34b392d57bd8fbcebbe7a037f55464029",
-  "github_run_id": "30140610632",
+  "generated_at": "2026-07-26T22:35:17+00:00",
+  "git_commit": "304a89a065a0f1dd6c062b3afa8e61ba5696842a",
+  "github_run_id": "30223386438",
   "hotspot_scope": {
     "label": "流行病学与感染相关医学专题",
     "pubmed_query": "(\n  \"Epidemiology\"[MeSH Terms] OR epidemiolog*[Title/Abstract]\n  OR \"Communicable Diseases\"[MeSH Terms] OR infectious[Title/Abstract]\n  OR infection*[Title/Abstract] OR outbreak*[Title/Abstract]\n  OR epidemic*[Title/Abstract] OR pandemic*[Title/Abstract]\n  OR pathogen*[Title/Abstract]\n  OR \"Public Health\"[MeSH Terms] OR \"public health\"[Title/Abstract]\n  OR \"Population Health\"[Title/Abstract]\n  OR \"Pediatrics\"[MeSH Terms] OR pediatric*[Title/Abstract]\n  OR paediatric*[Title/Abstract] OR child*[Title/Abstract]\n  OR infant*[Title/Abstract] OR neonatal[Title/Abstract]\n  OR \"Respiratory Tract Diseases\"[MeSH Terms] OR respiratory[Title/Abstract]\n  OR pneumonia[Title/Abstract] OR influenza[Title/Abstract]\n  OR asthma[Title/Abstract] OR COPD[Title/Abstract]\n  OR \"Vaccines\"[MeSH Terms] OR vaccine*[Title/Abstract]\n  OR vaccination[Title/Abstract] OR immunization[Title/Abstract]\n  OR immunisation[Title/Abstract]\n  OR \"Cross Infection\"[MeSH Terms] OR \"infection control\"[Title/Abstract]\n  OR \"healthcare-associated infection\"[Title/Abstract]\n  OR \"hospital-acquired infection\"[Title/Abstract]\n  OR \"Drug Resistance, Microbial\"[MeSH Terms]\n  OR \"antimicrobial resistance\"[Title/Abstract]\n  OR surveillance[Title/Abstract] OR \"disease monitoring\"[Title/Abstract]\n  OR (\n    (\"artificial intelligence\"[Title/Abstract] OR \"machine learning\"[Title/Abstract]\n     OR \"predictive model\"[Title/Abstract])\n    AND (disease[Title/Abstract] OR infection*[Title/Abstract]\n         OR outbreak*[Title/Abstract] OR surveillance[Title/Abstract])\n  )\n)",
@@ -5996,14 +5996,6 @@
       "url": "https://tools.cdc.gov/api/embed/downloader/download.asp?m=132608&c=766046"
     },
     {
-      "content_hash": "5b9875ac8bdf3e05e0cb4f59dd901a4895c58d531875dfc886670be3348fda61",
-      "doi": "",
-      "item_id": "1eba9feee0c4dc4dbfd72bf5",
-      "retrieved_at": "2026-07-25T01:02:30+00:00",
-      "source_id": "who-news",
-      "url": "https://www.who.int/news/item/20-07-2026-who-member-states-continue-negotiations-on-the-pathogen-access-and-benefit-sharing-annex"
-    },
-    {
       "content_hash": "b97906de495013ab927128abf6600bbd9a27d214e0cbd00b811fa2c96fea10b0",
       "doi": "10.1016/s0140-6736(26)00861-5",
       "item_id": "ad900cdfeadced848812c897",
@@ -6026,6 +6018,94 @@
       "retrieved_at": "2026-07-25T01:02:11+00:00",
       "source_id": "pubmed",
       "url": "https://pubmed.ncbi.nlm.nih.gov/42496990/"
+    },
+    {
+      "content_hash": "de3d5f139776680f348dd2ef4b4b9c936e9fc9562fc7e617474e33fed3aec6c5",
+      "doi": "10.1038/s41564-026-02419-y",
+      "item_id": "9622ce31686b2c14f436484e",
+      "retrieved_at": "2026-07-26T22:34:08+00:00",
+      "source_id": "pubmed",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/42498819/"
+    },
+    {
+      "content_hash": "5362b980224ba486a49f95f5530b9049432432034483f01b11300feb5791b6bb",
+      "doi": "10.1038/s41591-026-04545-w",
+      "item_id": "e56e67b1e421c955f891375f",
+      "retrieved_at": "2026-07-26T22:34:08+00:00",
+      "source_id": "pubmed",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/42498742/"
+    },
+    {
+      "content_hash": "cdf282a4520b5213db7f80bbca9bcb32332deb1550c0bcbb0dc3cff7a8caf9ed",
+      "doi": "10.1038/s41551-026-01755-y",
+      "item_id": "c2eb9e62014a110752a02c69",
+      "retrieved_at": "2026-07-26T22:34:08+00:00",
+      "source_id": "pubmed",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/42498735/"
+    },
+    {
+      "content_hash": "af2d59893acd3c6d9c4ec30de63de0c8d2846c359c7e3b19a11366f657eab524",
+      "doi": "10.1038/s41551-026-01739-y",
+      "item_id": "290213a3f4ccfe2aa52ab033",
+      "retrieved_at": "2026-07-26T22:34:08+00:00",
+      "source_id": "pubmed",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/42498734/"
+    },
+    {
+      "content_hash": "3fd913d57d7e79102425880ba6f2f1ae2086a7ff557d0fdd018e2a259695d4ff",
+      "doi": "10.1136/bmj-2026-100302",
+      "item_id": "5a237c1cf89963d68eb0cbdc",
+      "retrieved_at": "2026-07-26T22:34:08+00:00",
+      "source_id": "pubmed",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/42498307/"
+    },
+    {
+      "content_hash": "e20e3a697a8aa894b72640db370f2936ce08a484c1c4021e7263342c5be6a17c",
+      "doi": "10.1016/s2468-2667(25)00307-x",
+      "item_id": "1872dba4e479311763748f01",
+      "retrieved_at": "2026-07-26T22:34:08+00:00",
+      "source_id": "pubmed",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/42497880/"
+    },
+    {
+      "content_hash": "2c03782af3a78ce6426d9c9be60df895cf0cb4c3876aeb24b91aebd3f9f88b7a",
+      "doi": "10.1016/s0140-6736(26)01417-0",
+      "item_id": "50b7bae8595a73b13a86e588",
+      "retrieved_at": "2026-07-26T22:34:08+00:00",
+      "source_id": "pubmed",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/42497874/"
+    },
+    {
+      "content_hash": "1499ee7a04898e7d26290d2c16712fa7b80ec54ccb3c27f1c6a209c6b55a5d0a",
+      "doi": "10.1016/j.cell.2026.06.005",
+      "item_id": "e0d4c21da7cdcb5ff3929942",
+      "retrieved_at": "2026-07-26T22:34:08+00:00",
+      "source_id": "pubmed",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/42497867/"
+    },
+    {
+      "content_hash": "37129f3743e89a03f1c5ac7cb693fcefdeea116ecc671373caa9e6139f73614e",
+      "doi": "10.1016/j.xcrm.2026.102934",
+      "item_id": "5f275710c0ca3d3f74250979",
+      "retrieved_at": "2026-07-26T22:34:08+00:00",
+      "source_id": "pubmed",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/42497865/"
+    },
+    {
+      "content_hash": "a1b2129de6ec67150a0393f2e1967ad598c305532145b227b3985402f1a3f1a0",
+      "doi": "10.1016/j.xcrm.2026.102940",
+      "item_id": "11695431593a44564cedecca",
+      "retrieved_at": "2026-07-26T22:34:08+00:00",
+      "source_id": "pubmed",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/42497864/"
+    },
+    {
+      "content_hash": "daba70fb7a76db4957efa4162d9a5148b4cda3dbeae74cfd5b5f38866b884486",
+      "doi": "10.1016/j.chom.2026.06.021",
+      "item_id": "725d2e97359703a9f8258960",
+      "retrieved_at": "2026-07-26T22:34:08+00:00",
+      "source_id": "pubmed",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/42497859/"
     },
     {
       "content_hash": "e774e714f9cdbf66e61eb1775c5d00d5f902801ad2b233aa3173e386c61f621d",
@@ -6154,150 +6234,62 @@
       "retrieved_at": "2026-07-25T01:02:11+00:00",
       "source_id": "pubmed",
       "url": "https://pubmed.ncbi.nlm.nih.gov/42492520/"
-    },
-    {
-      "content_hash": "3691f4d6c0176707fa3664494be0e454c1852a38b77629673caa967bfd941a22",
-      "doi": "10.1016/j.xcrm.2026.102936",
-      "item_id": "9f096b8fdaec81b4e20c2781",
-      "retrieved_at": "2026-07-25T01:02:11+00:00",
-      "source_id": "pubmed",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/42492518/"
-    },
-    {
-      "content_hash": "0d7a75266a086433a06c4637432c2bb5986e189acfc81a47061db6d99f588716",
-      "doi": "10.1016/j.cell.2026.06.030",
-      "item_id": "8da7f40b5f6b09f2e0614dbc",
-      "retrieved_at": "2026-07-25T01:02:11+00:00",
-      "source_id": "pubmed",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/42492495/"
-    },
-    {
-      "content_hash": "50e6cace0b769d4595223a24a51c9bb52debc844415ceae463a555fef5210bfb",
-      "doi": "10.1016/j.cell.2026.06.021",
-      "item_id": "6b53a3a5473c30180f2e4a15",
-      "retrieved_at": "2026-07-25T01:02:11+00:00",
-      "source_id": "pubmed",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/42492493/"
-    },
-    {
-      "content_hash": "0ca48d255b600be41cbf336f9b40caecd1cb071afadad359053ae7559f5abf6c",
-      "doi": "10.1126/science.aed0667",
-      "item_id": "c76ac52cf893c3a70799ea82",
-      "retrieved_at": "2026-07-25T01:02:11+00:00",
-      "source_id": "pubmed",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/42490499/"
-    },
-    {
-      "content_hash": "ddbad92600ff8aa3def266edd0f96e3b13785b6a3405ca60fc332f1f96714f84",
-      "doi": "10.1126/science.adx4343",
-      "item_id": "b7d1ac1fb79b122444d33c04",
-      "retrieved_at": "2026-07-25T01:02:11+00:00",
-      "source_id": "pubmed",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/42490497/"
-    },
-    {
-      "content_hash": "826ba9bd21ec3c12ba9dc0478717a7975bb606e5b19475d439b959753a416136",
-      "doi": "10.1126/science.adx7219",
-      "item_id": "be4cbec097dfedd797ba5d70",
-      "retrieved_at": "2026-07-25T01:02:11+00:00",
-      "source_id": "pubmed",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/42490492/"
-    },
-    {
-      "content_hash": "88c2f33d7e4eb352739a0604f87e30562049aaf320a6cedad0e058f6276bc8dc",
-      "doi": "10.1126/science.aek8027",
-      "item_id": "359819a8d5afc8e0815c0a3e",
-      "retrieved_at": "2026-07-25T01:02:11+00:00",
-      "source_id": "pubmed",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/42490486/"
-    },
-    {
-      "content_hash": "e523f9d7c4886f68e06da1d00ff52aa6c79ea7e67c289af0b450df4ac24a9790",
-      "doi": "10.1126/science.adz1652",
-      "item_id": "5233024fd4b2ef4e0200ca63",
-      "retrieved_at": "2026-07-25T01:02:11+00:00",
-      "source_id": "pubmed",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/42490473/"
-    },
-    {
-      "content_hash": "c6c268b2bf845c0fcd6745241e57b21708c17bad86beebb6d7976dad23853e79",
-      "doi": "10.1126/science.aee1792",
-      "item_id": "216bfd1de9a01b0c9a5a24cb",
-      "retrieved_at": "2026-07-25T01:02:11+00:00",
-      "source_id": "pubmed",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/42490461/"
-    },
-    {
-      "content_hash": "81e9a83fa68ff15fb799c32764a780f8b975ab0aa2be9d8e4fb34e7a46883a9f",
-      "doi": "10.1001/jama.2026.13187",
-      "item_id": "f926af9dcfaa221e902a2577",
-      "retrieved_at": "2026-07-25T01:02:11+00:00",
-      "source_id": "pubmed",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/42490104/"
-    },
-    {
-      "content_hash": "965201ffb94d8585c409f9b33b3dd0bd8a44dfd0153338b789bb9c64f2d35ffc",
-      "doi": "10.1001/jama.2026.10549",
-      "item_id": "00e889d906906ae0c68c1cbd",
-      "retrieved_at": "2026-07-25T01:02:11+00:00",
-      "source_id": "pubmed",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/42490090/"
     }
   ],
   "raw_artifacts": [
     {
       "bytes": 370746,
-      "r2_key": "research-radar/raw/30140610632/agency-cdc-b0adf66a5f10.json.gz",
-      "sha256": "b0adf66a5f1052876a090be1c7d82e34bd0c4252a2535afd00914dfc01c0e339",
+      "r2_key": "research-radar/raw/30223386438/agency-cdc-eef60e1caaf6.json.gz",
+      "sha256": "eef60e1caaf6f241ec4d867dff4eb6c7fc3a0762c8fcc13f5e1d1dc618937290",
       "source_id": "agency-cdc",
       "uploaded": true
     },
     {
-      "bytes": 6386,
-      "r2_key": "research-radar/raw/30140610632/agency-mmwr-a39a600d4348.json.gz",
-      "sha256": "a39a600d43489c0d4aa5baedea75ad0b61ea5edcee609249f6c359743d092ceb",
+      "bytes": 6382,
+      "r2_key": "research-radar/raw/30223386438/agency-mmwr-4db6b5ec419b.json.gz",
+      "sha256": "4db6b5ec419bc945560fb379611ba878ac0b6e861a37b9522f700b0c32456151",
       "source_id": "agency-mmwr",
       "uploaded": true
     },
     {
       "bytes": 69585,
-      "r2_key": "research-radar/raw/30140610632/agency-who-news-b0f0295186f9.json.gz",
-      "sha256": "b0f0295186f913c8a9bbf7113602ffe1736d26761c88dff4e401bb97c247fef7",
+      "r2_key": "research-radar/raw/30223386438/agency-who-news-0190b3b6dc3b.json.gz",
+      "sha256": "0190b3b6dc3b494e3365581122c967969e993c68a2d20f59e75ad9968ae0f89d",
       "source_id": "agency-who-news",
       "uploaded": true
     },
     {
-      "bytes": 54714,
-      "r2_key": "research-radar/raw/30140610632/news-kff-45ca82d89033.json.gz",
-      "sha256": "45ca82d89033cafad496a16a532dac890b3f1f4a48216f116f8ddf23151c4017",
+      "bytes": 48603,
+      "r2_key": "research-radar/raw/30223386438/news-kff-7d8a30dd0aa9.json.gz",
+      "sha256": "7d8a30dd0aa95ad9f82c730c25603941c9c69ee058062e8577060021c231600f",
       "source_id": "news-kff",
       "uploaded": true
     },
     {
       "bytes": 13205,
-      "r2_key": "research-radar/raw/30140610632/news-stat-3a346482d2dc.json.gz",
-      "sha256": "3a346482d2dc10fd526188ad6f9e96b036287a318e89a24f63bb2cac68666313",
+      "r2_key": "research-radar/raw/30223386438/news-stat-0f8f88cddf9f.json.gz",
+      "sha256": "0f8f88cddf9fa262d6fa2cc23f5749638f7661480077ebbbe53a9d7f84c596f0",
       "source_id": "news-stat",
       "uploaded": true
     },
     {
-      "bytes": 3799,
-      "r2_key": "research-radar/raw/30140610632/openalex-journals-d861b7b1d485.json.gz",
-      "sha256": "d861b7b1d4852644ae24a1af37bda70914f9da2531cf22a57696d3f972f96b39",
+      "bytes": 5903,
+      "r2_key": "research-radar/raw/30223386438/openalex-journals-6772d1a3a537.json.gz",
+      "sha256": "6772d1a3a537aee9a9fef6ef6b4c06ad1ba586f335b2b3e41b44aab3a98acc6a",
       "source_id": "openalex-journals",
       "uploaded": true
     },
     {
-      "bytes": 435521,
-      "r2_key": "research-radar/raw/30140610632/pubmed-journals-1c907505ad63.json.gz",
-      "sha256": "1c907505ad63d71246e55b1ad41c3ddaf9307886cb3d34715deee25e80c8e952",
+      "bytes": 255822,
+      "r2_key": "research-radar/raw/30223386438/pubmed-journals-a9f72ddc3dce.json.gz",
+      "sha256": "a9f72ddc3dcee9ce1e7fb65cdb50dd0a7611232599b329df3864cfb0922bc002",
       "source_id": "pubmed-journals",
       "uploaded": true
     },
     {
-      "bytes": 15729,
-      "r2_key": "research-radar/raw/30140610632/ai-cross-board-eeaa3d5bb0f7.json.gz",
-      "sha256": "eeaa3d5bb0f7bebc88d3dfb37d1333c82fd8cebca14b1fcbfa918a5745afe1b6",
+      "bytes": 16593,
+      "r2_key": "research-radar/raw/30223386438/ai-cross-board-3bd7e15e14f0.json.gz",
+      "sha256": "3bd7e15e14f09a8b130e44edb1f364cf0574e14b6852ba801234d19a11fc762e",
       "source_id": "ai-cross-board",
       "uploaded": true
     }
@@ -6306,7 +6298,7 @@
   "schema_version": 1,
   "source_statuses": [
     {
-      "checked_at": "2026-07-25T02:32:52+00:00",
+      "checked_at": "2026-07-26T22:34:47+00:00",
       "error": "HTTPError: 429 Client Error: Too Many Requests for url: https://api.gdeltproject.org/api/v2/doc/doc?query=domainis%3Ahealth.gov.au+%28health+OR+medical+OR+disease+OR+outbreak+OR+hospital+OR+vaccine+OR+%22artificial+intelligence%22%29&mode=artlist&format=json&maxrecords=100&timespan=7d&sort=datedesc",
       "item_count": 0,
       "section": "agencies",
@@ -6314,7 +6306,7 @@
       "status": "failed"
     },
     {
-      "checked_at": "2026-07-25T02:32:31+00:00",
+      "checked_at": "2026-07-26T22:34:23+00:00",
       "error": "",
       "item_count": 939,
       "section": "agencies",
@@ -6322,7 +6314,7 @@
       "status": "success"
     },
     {
-      "checked_at": "2026-07-25T02:32:43+00:00",
+      "checked_at": "2026-07-26T22:34:35+00:00",
       "error": "HTTPError: 429 Client Error: Too Many Requests for url: https://api.gdeltproject.org/api/v2/doc/doc?query=domainis%3Achinacdc.cn+%28health+OR+medical+OR+disease+OR+outbreak+OR+hospital+OR+vaccine+OR+%22artificial+intelligence%22%29&mode=artlist&format=json&maxrecords=100&timespan=7d&sort=datedesc",
       "item_count": 0,
       "section": "agencies",
@@ -6330,7 +6322,7 @@
       "status": "failed"
     },
     {
-      "checked_at": "2026-07-25T02:32:43+00:00",
+      "checked_at": "2026-07-26T22:34:36+00:00",
       "error": "HTTPError: 404 Client Error: Not Found for url: https://www.ecdc.europa.eu/en/news-events/rss",
       "item_count": 0,
       "section": "agencies",
@@ -6338,7 +6330,7 @@
       "status": "failed"
     },
     {
-      "checked_at": "2026-07-25T02:32:43+00:00",
+      "checked_at": "2026-07-26T22:34:35+00:00",
       "error": "HTTPError: 429 Client Error: Too Many Requests for url: https://api.gdeltproject.org/api/v2/doc/doc?query=domainis%3Ahhs.gov+%28health+OR+medical+OR+disease+OR+outbreak+OR+hospital+OR+vaccine+OR+%22artificial+intelligence%22%29&mode=artlist&format=json&maxrecords=100&timespan=7d&sort=datedesc",
       "item_count": 0,
       "section": "agencies",
@@ -6346,7 +6338,7 @@
       "status": "failed"
     },
     {
-      "checked_at": "2026-07-25T02:32:30+00:00",
+      "checked_at": "2026-07-26T22:34:23+00:00",
       "error": "",
       "item_count": 1,
       "section": "agencies",
@@ -6354,7 +6346,7 @@
       "status": "success"
     },
     {
-      "checked_at": "2026-07-25T02:32:43+00:00",
+      "checked_at": "2026-07-26T22:34:35+00:00",
       "error": "HTTPError: 429 Client Error: Too Many Requests for url: https://api.gdeltproject.org/api/v2/doc/doc?query=domainis%3Anhc.gov.cn+%28health+OR+medical+OR+disease+OR+outbreak+OR+hospital+OR+vaccine+OR+%22artificial+intelligence%22%29&mode=artlist&format=json&maxrecords=100&timespan=7d&sort=datedesc",
       "item_count": 0,
       "section": "agencies",
@@ -6362,7 +6354,7 @@
       "status": "failed"
     },
     {
-      "checked_at": "2026-07-25T02:32:44+00:00",
+      "checked_at": "2026-07-26T22:34:36+00:00",
       "error": "HTTPError: 429 Client Error: Too Many Requests for url: https://api.gdeltproject.org/api/v2/doc/doc?query=domainis%3Aengland.nhs.uk+%28health+OR+medical+OR+disease+OR+outbreak+OR+hospital+OR+vaccine+OR+%22artificial+intelligence%22%29&mode=artlist&format=json&maxrecords=100&timespan=7d&sort=datedesc",
       "item_count": 0,
       "section": "agencies",
@@ -6370,7 +6362,7 @@
       "status": "failed"
     },
     {
-      "checked_at": "2026-07-25T02:32:52+00:00",
+      "checked_at": "2026-07-26T22:34:47+00:00",
       "error": "HTTPError: 429 Client Error: Too Many Requests for url: https://api.gdeltproject.org/api/v2/doc/doc?query=domainis%3Apaho.org+%28health+OR+medical+OR+disease+OR+outbreak+OR+hospital+OR+vaccine+OR+%22artificial+intelligence%22%29&mode=artlist&format=json&maxrecords=100&timespan=7d&sort=datedesc",
       "item_count": 0,
       "section": "agencies",
@@ -6378,7 +6370,7 @@
       "status": "failed"
     },
     {
-      "checked_at": "2026-07-25T02:32:43+00:00",
+      "checked_at": "2026-07-26T22:34:35+00:00",
       "error": "HTTPError: 429 Client Error: Too Many Requests for url: https://api.gdeltproject.org/api/v2/doc/doc?query=domainis%3Acanada.ca+%22Public+Health+Agency+of+Canada%22&mode=artlist&format=json&maxrecords=100&timespan=7d&sort=datedesc",
       "item_count": 0,
       "section": "agencies",
@@ -6386,7 +6378,7 @@
       "status": "failed"
     },
     {
-      "checked_at": "2026-07-25T02:32:43+00:00",
+      "checked_at": "2026-07-26T22:34:36+00:00",
       "error": "HTTPError: 429 Client Error: Too Many Requests for url: https://api.gdeltproject.org/api/v2/doc/doc?query=domainis%3Agov.uk+%22UK+Health+Security+Agency%22&mode=artlist&format=json&maxrecords=100&timespan=7d&sort=datedesc",
       "item_count": 0,
       "section": "agencies",
@@ -6394,7 +6386,7 @@
       "status": "failed"
     },
     {
-      "checked_at": "2026-07-25T02:32:43+00:00",
+      "checked_at": "2026-07-26T22:34:35+00:00",
       "error": "HTTPError: 429 Client Error: Too Many Requests for url: https://api.gdeltproject.org/api/v2/doc/doc?query=domainis%3Awho.int+%22Disease+Outbreak+News%22&mode=artlist&format=json&maxrecords=100&timespan=7d&sort=datedesc",
       "item_count": 0,
       "section": "agencies",
@@ -6402,7 +6394,7 @@
       "status": "failed"
     },
     {
-      "checked_at": "2026-07-25T02:32:31+00:00",
+      "checked_at": "2026-07-26T22:34:23+00:00",
       "error": "",
       "item_count": 14,
       "section": "agencies",
@@ -6410,7 +6402,7 @@
       "status": "success"
     },
     {
-      "checked_at": "2026-07-25T02:32:43+00:00",
+      "checked_at": "2026-07-26T22:34:35+00:00",
       "error": "HTTPError: 429 Client Error: Too Many Requests for url: https://api.gdeltproject.org/api/v2/doc/doc?query=domainis%3Awho.int+%22Weekly+Epidemiological+Record%22&mode=artlist&format=json&maxrecords=100&timespan=7d&sort=datedesc",
       "item_count": 0,
       "section": "agencies",
@@ -6418,7 +6410,7 @@
       "status": "failed"
     },
     {
-      "checked_at": "2026-07-25T02:32:30+00:00",
+      "checked_at": "2026-07-26T22:34:23+00:00",
       "error": "",
       "item_count": 62,
       "section": "journals",
@@ -6426,7 +6418,7 @@
       "status": "success"
     },
     {
-      "checked_at": "2026-07-25T02:32:43+00:00",
+      "checked_at": "2026-07-26T22:34:35+00:00",
       "error": "HTTPError: 429 Client Error: Too Many Requests for url: https://api.gdeltproject.org/api/v2/doc/doc?query=domainis%3Aapnews.com+%28health+OR+medical+OR+disease+OR+outbreak+OR+hospital+OR+vaccine+OR+%22artificial+intelligence%22%29&mode=artlist&format=json&maxrecords=100&timespan=7d&sort=datedesc",
       "item_count": 0,
       "section": "news",
@@ -6434,7 +6426,7 @@
       "status": "failed"
     },
     {
-      "checked_at": "2026-07-25T02:32:43+00:00",
+      "checked_at": "2026-07-26T22:34:35+00:00",
       "error": "HTTPError: 429 Client Error: Too Many Requests for url: https://api.gdeltproject.org/api/v2/doc/doc?query=domainis%3Abbc.com+%28health+OR+medical+OR+disease+OR+outbreak+OR+hospital+OR+vaccine+OR+%22artificial+intelligence%22%29&mode=artlist&format=json&maxrecords=100&timespan=7d&sort=datedesc",
       "item_count": 0,
       "section": "news",
@@ -6442,7 +6434,7 @@
       "status": "failed"
     },
     {
-      "checked_at": "2026-07-25T02:32:31+00:00",
+      "checked_at": "2026-07-26T22:34:23+00:00",
       "error": "",
       "item_count": 4,
       "section": "news",
@@ -6450,7 +6442,7 @@
       "status": "success"
     },
     {
-      "checked_at": "2026-07-25T02:32:43+00:00",
+      "checked_at": "2026-07-26T22:34:35+00:00",
       "error": "HTTPError: 429 Client Error: Too Many Requests for url: https://api.gdeltproject.org/api/v2/doc/doc?query=domainis%3Areuters.com+%28health+OR+medical+OR+disease+OR+outbreak+OR+hospital+OR+vaccine+OR+%22artificial+intelligence%22%29&mode=artlist&format=json&maxrecords=100&timespan=7d&sort=datedesc",
       "item_count": 0,
       "section": "news",
@@ -6458,7 +6450,7 @@
       "status": "failed"
     },
     {
-      "checked_at": "2026-07-25T02:32:30+00:00",
+      "checked_at": "2026-07-26T22:34:23+00:00",
       "error": "",
       "item_count": 6,
       "section": "news",
@@ -6466,7 +6458,7 @@
       "status": "success"
     },
     {
-      "checked_at": "2026-07-25T02:32:43+00:00",
+      "checked_at": "2026-07-26T22:34:35+00:00",
       "error": "HTTPError: 429 Client Error: Too Many Requests for url: https://api.gdeltproject.org/api/v2/doc/doc?query=domainis%3Athepaper.cn+%28health+OR+medical+OR+disease+OR+outbreak+OR+hospital+OR+vaccine+OR+%22artificial+intelligence%22%29&mode=artlist&format=json&maxrecords=100&timespan=7d&sort=datedesc",
       "item_count": 0,
       "section": "news",
@@ -6474,7 +6466,7 @@
       "status": "failed"
     },
     {
-      "checked_at": "2026-07-25T02:33:20+00:00",
+      "checked_at": "2026-07-26T22:35:16+00:00",
       "error": "",
       "item_count": 1,
       "section": "ai_analysis",
