@@ -1,15 +1,32 @@
 {
   "ai_analysis": {
     "enabled": true,
-    "error": "JSONDecodeError: Unterminated string starting at: line 109 column 15 (char 4799)",
+    "input_counts": {
+      "agencies": 0,
+      "hotspots": 10,
+      "journals": 30,
+      "news": 13
+    },
+    "input_sha256": "3f1f50337c1672d8d0679725aeee8daa05cfee110d5ebba9ab78d58b4355475d",
     "model": "deepseek-v4-flash",
     "prompt_version": "cross-board-zh-v3",
     "provider": "deepseek",
-    "status": "failed"
+    "response_id": "dda9548b-acdc-4832-9cb8-af167917cec6",
+    "status": "success",
+    "usage": {
+      "completion_tokens": 2023,
+      "prompt_cache_hit_tokens": 640,
+      "prompt_cache_miss_tokens": 9797,
+      "prompt_tokens": 10437,
+      "prompt_tokens_details": {
+        "cached_tokens": 640
+      },
+      "total_tokens": 12460
+    }
   },
-  "generated_at": "2026-10-12T00:43:20+00:00",
-  "git_commit": "440af5be09ad8dce947b10216774ddb4b98f7138",
-  "github_run_id": "38189019950",
+  "generated_at": "2026-10-12T13:33:10+00:00",
+  "git_commit": "6aeeed404efaae228575e126e0d1394ad14eb8e2",
+  "github_run_id": "38256307708",
   "hotspot_scope": {
     "label": "流行病学与感染相关医学专题",
     "pubmed_query": "(\n  \"Epidemiology\"[MeSH Terms] OR epidemiolog*[Title/Abstract]\n  OR \"Communicable Diseases\"[MeSH Terms] OR infectious[Title/Abstract]\n  OR infection*[Title/Abstract] OR outbreak*[Title/Abstract]\n  OR epidemic*[Title/Abstract] OR pandemic*[Title/Abstract]\n  OR pathogen*[Title/Abstract]\n  OR \"Public Health\"[MeSH Terms] OR \"public health\"[Title/Abstract]\n  OR \"Population Health\"[Title/Abstract]\n  OR \"Pediatrics\"[MeSH Terms] OR pediatric*[Title/Abstract]\n  OR paediatric*[Title/Abstract] OR child*[Title/Abstract]\n  OR infant*[Title/Abstract] OR neonatal[Title/Abstract]\n  OR \"Respiratory Tract Diseases\"[MeSH Terms] OR respiratory[Title/Abstract]\n  OR pneumonia[Title/Abstract] OR influenza[Title/Abstract]\n  OR asthma[Title/Abstract] OR COPD[Title/Abstract]\n  OR \"Vaccines\"[MeSH Terms] OR vaccine*[Title/Abstract]\n  OR vaccination[Title/Abstract] OR immunization[Title/Abstract]\n  OR immunisation[Title/Abstract]\n  OR \"Cross Infection\"[MeSH Terms] OR \"infection control\"[Title/Abstract]\n  OR \"healthcare-associated infection\"[Title/Abstract]\n  OR \"hospital-acquired infection\"[Title/Abstract]\n  OR \"Drug Resistance, Microbial\"[MeSH Terms]\n  OR \"antimicrobial resistance\"[Title/Abstract]\n  OR surveillance[Title/Abstract] OR \"disease monitoring\"[Title/Abstract]\n  OR (\n    (\"artificial intelligence\"[Title/Abstract] OR \"machine learning\"[Title/Abstract]\n     OR \"predictive model\"[Title/Abstract])\n    AND (disease[Title/Abstract] OR infection*[Title/Abstract]\n         OR outbreak*[Title/Abstract] OR surveillance[Title/Abstract])\n  )\n)",
@@ -5955,6 +5972,14 @@
       "url": "https://kffhealthnews.org/elections/medicare-for-all-abdul-el-sayed-michigan-midterm-elections/"
     },
     {
+      "content_hash": "2c7c299a728b4dde8b1dfc10387603d654dd0cb3d65573b48b6b3ec040b35679",
+      "doi": "10.1016/s0140-6736(26)01700-9",
+      "item_id": "2e005a656406bf7c4e5e0ad1",
+      "retrieved_at": "2026-10-12T13:32:03+00:00",
+      "source_id": "pubmed",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/42860133/"
+    },
+    {
       "content_hash": "dc21a0dfb0e8d5851ab95d6bcd139c65dd7a2fde63ddd5ff3a7b86a59ca18be5",
       "doi": "10.1016/s0140-6736(26)00880-9",
       "item_id": "aeb5265c682abe1adf92eaee",
@@ -6185,64 +6210,105 @@
       "retrieved_at": "2026-10-12T00:42:23+00:00",
       "source_id": "pubmed",
       "url": "https://pubmed.ncbi.nlm.nih.gov/42849447/"
-    },
-    {
-      "content_hash": "c1e79bd02926a5c89cd6c6ed71d4ccdce89f8bac212e1efc7f95c08a358ed4fe",
-      "doi": "10.1016/j.xcrm.2026.103101",
-      "item_id": "2b2cc42a4eaf5329d8e89933",
-      "retrieved_at": "2026-10-12T00:42:23+00:00",
-      "source_id": "pubmed",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/42849446/"
     }
   ],
   "raw_artifacts": [
     {
+      "bytes": 22,
+      "r2_key": "research-radar/raw/38256307708/agency-au-health-53233063003c.json.gz",
+      "sha256": "53233063003c97b8ca66d107336cd17a38fafda9e479172f3131733d5b11e1db",
+      "source_id": "agency-au-health",
+      "uploaded": true
+    },
+    {
       "bytes": 372339,
-      "r2_key": "research-radar/raw/38189019950/agency-cdc-a9a71015a68d.json.gz",
-      "sha256": "a9a71015a68d4ea692e84a86e20b247b13e7bf02803865b285d4e152e668ad9a",
+      "r2_key": "research-radar/raw/38256307708/agency-cdc-101bbdee0a79.json.gz",
+      "sha256": "101bbdee0a793ff07a11c2a5082c540925142157861841f787b0523fe8229a71",
       "source_id": "agency-cdc",
       "uploaded": true
     },
     {
-      "bytes": 5536,
-      "r2_key": "research-radar/raw/38189019950/agency-mmwr-f099d5e58fe8.json.gz",
-      "sha256": "f099d5e58fe8560e3a84efc1c8cc804d8238cedc5f3618d90b387937fd119426",
+      "bytes": 22,
+      "r2_key": "research-radar/raw/38256307708/agency-chinacdc-9062c45b3edb.json.gz",
+      "sha256": "9062c45b3edb0b4d616b33c42ebeeb46c0299823f8984058b643f212dbfeea2b",
+      "source_id": "agency-chinacdc",
+      "uploaded": true
+    },
+    {
+      "bytes": 5537,
+      "r2_key": "research-radar/raw/38256307708/agency-mmwr-3bb52d666395.json.gz",
+      "sha256": "3bb52d666395f02f370a185b5cccedd6274fcaed9f5ca408b81644f945532e07",
       "source_id": "agency-mmwr",
       "uploaded": true
     },
     {
+      "bytes": 22,
+      "r2_key": "research-radar/raw/38256307708/agency-nhs-27fcc2914c76.json.gz",
+      "sha256": "27fcc2914c76df0a196eb2f560151db843f682d6b783c39e0fea1632592f5866",
+      "source_id": "agency-nhs",
+      "uploaded": true
+    },
+    {
+      "bytes": 22,
+      "r2_key": "research-radar/raw/38256307708/agency-paho-f53794a4e8f8.json.gz",
+      "sha256": "f53794a4e8f8cba417b0a8ff6a7b1e1b3c5dbd92d8138bd3941ece144415e87c",
+      "source_id": "agency-paho",
+      "uploaded": true
+    },
+    {
+      "bytes": 22,
+      "r2_key": "research-radar/raw/38256307708/agency-ukhsa-25371a4b3d65.json.gz",
+      "sha256": "25371a4b3d656e14e5e2a7b2688b8b6a8de9baaf173912c3836fc23214827a7a",
+      "source_id": "agency-ukhsa",
+      "uploaded": true
+    },
+    {
+      "bytes": 22,
+      "r2_key": "research-radar/raw/38256307708/agency-who-don-9062c45b3edb.json.gz",
+      "sha256": "9062c45b3edb0b4d616b33c42ebeeb46c0299823f8984058b643f212dbfeea2b",
+      "source_id": "agency-who-don",
+      "uploaded": true
+    },
+    {
       "bytes": 43932,
-      "r2_key": "research-radar/raw/38189019950/agency-who-news-00f42edb6e45.json.gz",
-      "sha256": "00f42edb6e450e80b6a59a546a8c3fd4b598157df4c69003ff01934eabcda333",
+      "r2_key": "research-radar/raw/38256307708/agency-who-news-e50158adebca.json.gz",
+      "sha256": "e50158adebca6a164d92b4463310d4086133a7c31f14aa3648a61f1c8d6e7326",
       "source_id": "agency-who-news",
       "uploaded": true
     },
     {
       "bytes": 42724,
-      "r2_key": "research-radar/raw/38189019950/news-kff-07e06be65329.json.gz",
-      "sha256": "07e06be65329e5392692c9cd3f86557675b153686aae74ed7bbd82b647e25ded",
+      "r2_key": "research-radar/raw/38256307708/news-kff-e3e278574234.json.gz",
+      "sha256": "e3e278574234d2c6348899bbf81a247757f28d5f09cd3c4bd34625a0d78f71ce",
       "source_id": "news-kff",
       "uploaded": true
     },
     {
       "bytes": 14981,
-      "r2_key": "research-radar/raw/38189019950/news-stat-756598cdf1c7.json.gz",
-      "sha256": "756598cdf1c738ccfa7fc8a7e970bb2050d447d6e6c549ac962a35a475642cbe",
+      "r2_key": "research-radar/raw/38256307708/news-stat-97cc42cedf9c.json.gz",
+      "sha256": "97cc42cedf9c99833a1c158d05391b099c7e4f269f83f919ec3db5ad0b2c7a66",
       "source_id": "news-stat",
       "uploaded": true
     },
     {
-      "bytes": 5209,
-      "r2_key": "research-radar/raw/38189019950/openalex-journals-9fba24d946ff.json.gz",
-      "sha256": "9fba24d946ffd129ba37394f1ea4ff7cb667d5b9376fcb7bc4de40101f46b433",
+      "bytes": 5213,
+      "r2_key": "research-radar/raw/38256307708/openalex-journals-db3684db3776.json.gz",
+      "sha256": "db3684db3776d207a641b7c754e6a1f4d89cb1093957f3339cf01087c89b158e",
       "source_id": "openalex-journals",
       "uploaded": true
     },
     {
-      "bytes": 243647,
-      "r2_key": "research-radar/raw/38189019950/pubmed-journals-84550849436e.json.gz",
-      "sha256": "84550849436ea778306e355a02f0b518ddaaa0e2a856539f8ef16fcc80f5b727",
+      "bytes": 232015,
+      "r2_key": "research-radar/raw/38256307708/pubmed-journals-73ea848c108b.json.gz",
+      "sha256": "73ea848c108bef731b68315f0bcaf4814e49fa5d63016fcbdf3cde303120bff2",
       "source_id": "pubmed-journals",
+      "uploaded": true
+    },
+    {
+      "bytes": 15323,
+      "r2_key": "research-radar/raw/38256307708/ai-cross-board-e2d0e783fe60.json.gz",
+      "sha256": "e2d0e783fe60985d4e48e0ccdde2f456c868322f6c96d0217d2a57335142847a",
+      "source_id": "ai-cross-board",
       "uploaded": true
     }
   ],
@@ -6250,15 +6316,15 @@
   "schema_version": 1,
   "source_statuses": [
     {
-      "checked_at": "2026-10-12T00:42:56+00:00",
-      "error": "HTTPError: 429 Client Error: Too Many Requests for url: https://api.gdeltproject.org/api/v2/doc/doc?query=domainis%3Ahealth.gov.au+%28health+OR+medical+OR+disease+OR+outbreak+OR+hospital+OR+vaccine+OR+%22artificial+intelligence%22%29&mode=artlist&format=json&maxrecords=100&timespan=7d&sort=datedesc",
+      "checked_at": "2026-10-12T13:32:42+00:00",
+      "error": "",
       "item_count": 0,
       "section": "agencies",
       "source_id": "au-health",
-      "status": "failed"
+      "status": "success"
     },
     {
-      "checked_at": "2026-10-12T00:42:37+00:00",
+      "checked_at": "2026-10-12T13:32:18+00:00",
       "error": "",
       "item_count": 941,
       "section": "agencies",
@@ -6266,15 +6332,15 @@
       "status": "success"
     },
     {
-      "checked_at": "2026-10-12T00:42:46+00:00",
-      "error": "HTTPError: 429 Client Error: Too Many Requests for url: https://api.gdeltproject.org/api/v2/doc/doc?query=domainis%3Achinacdc.cn+%28health+OR+medical+OR+disease+OR+outbreak+OR+hospital+OR+vaccine+OR+%22artificial+intelligence%22%29&mode=artlist&format=json&maxrecords=100&timespan=7d&sort=datedesc",
+      "checked_at": "2026-10-12T13:32:31+00:00",
+      "error": "",
       "item_count": 0,
       "section": "agencies",
       "source_id": "chinacdc",
-      "status": "failed"
+      "status": "success"
     },
     {
-      "checked_at": "2026-10-12T00:42:46+00:00",
+      "checked_at": "2026-10-12T13:32:30+00:00",
       "error": "HTTPError: 404 Client Error: Not Found for url: https://www.ecdc.europa.eu/en/news-events/rss",
       "item_count": 0,
       "section": "agencies",
@@ -6282,7 +6348,7 @@
       "status": "failed"
     },
     {
-      "checked_at": "2026-10-12T00:42:46+00:00",
+      "checked_at": "2026-10-12T13:32:29+00:00",
       "error": "HTTPError: 429 Client Error: Too Many Requests for url: https://api.gdeltproject.org/api/v2/doc/doc?query=domainis%3Ahhs.gov+%28health+OR+medical+OR+disease+OR+outbreak+OR+hospital+OR+vaccine+OR+%22artificial+intelligence%22%29&mode=artlist&format=json&maxrecords=100&timespan=7d&sort=datedesc",
       "item_count": 0,
       "section": "agencies",
@@ -6290,7 +6356,7 @@
       "status": "failed"
     },
     {
-      "checked_at": "2026-10-12T00:42:36+00:00",
+      "checked_at": "2026-10-12T13:32:17+00:00",
       "error": "",
       "item_count": 0,
       "section": "agencies",
@@ -6298,7 +6364,7 @@
       "status": "success"
     },
     {
-      "checked_at": "2026-10-12T00:42:46+00:00",
+      "checked_at": "2026-10-12T13:32:29+00:00",
       "error": "HTTPError: 429 Client Error: Too Many Requests for url: https://api.gdeltproject.org/api/v2/doc/doc?query=domainis%3Anhc.gov.cn+%28health+OR+medical+OR+disease+OR+outbreak+OR+hospital+OR+vaccine+OR+%22artificial+intelligence%22%29&mode=artlist&format=json&maxrecords=100&timespan=7d&sort=datedesc",
       "item_count": 0,
       "section": "agencies",
@@ -6306,23 +6372,23 @@
       "status": "failed"
     },
     {
-      "checked_at": "2026-10-12T00:42:47+00:00",
-      "error": "HTTPError: 429 Client Error: Too Many Requests for url: https://api.gdeltproject.org/api/v2/doc/doc?query=domainis%3Aengland.nhs.uk+%28health+OR+medical+OR+disease+OR+outbreak+OR+hospital+OR+vaccine+OR+%22artificial+intelligence%22%29&mode=artlist&format=json&maxrecords=100&timespan=7d&sort=datedesc",
+      "checked_at": "2026-10-12T13:32:38+00:00",
+      "error": "",
       "item_count": 0,
       "section": "agencies",
       "source_id": "nhs",
-      "status": "failed"
+      "status": "success"
     },
     {
-      "checked_at": "2026-10-12T00:42:56+00:00",
-      "error": "HTTPError: 429 Client Error: Too Many Requests for url: https://api.gdeltproject.org/api/v2/doc/doc?query=domainis%3Apaho.org+%28health+OR+medical+OR+disease+OR+outbreak+OR+hospital+OR+vaccine+OR+%22artificial+intelligence%22%29&mode=artlist&format=json&maxrecords=100&timespan=7d&sort=datedesc",
+      "checked_at": "2026-10-12T13:32:44+00:00",
+      "error": "",
       "item_count": 0,
       "section": "agencies",
       "source_id": "paho",
-      "status": "failed"
+      "status": "success"
     },
     {
-      "checked_at": "2026-10-12T00:42:46+00:00",
+      "checked_at": "2026-10-12T13:32:29+00:00",
       "error": "HTTPError: 429 Client Error: Too Many Requests for url: https://api.gdeltproject.org/api/v2/doc/doc?query=domainis%3Acanada.ca+%22Public+Health+Agency+of+Canada%22&mode=artlist&format=json&maxrecords=100&timespan=7d&sort=datedesc",
       "item_count": 0,
       "section": "agencies",
@@ -6330,23 +6396,23 @@
       "status": "failed"
     },
     {
-      "checked_at": "2026-10-12T00:42:46+00:00",
-      "error": "HTTPError: 429 Client Error: Too Many Requests for url: https://api.gdeltproject.org/api/v2/doc/doc?query=domainis%3Agov.uk+%22UK+Health+Security+Agency%22&mode=artlist&format=json&maxrecords=100&timespan=7d&sort=datedesc",
+      "checked_at": "2026-10-12T13:32:34+00:00",
+      "error": "",
       "item_count": 0,
       "section": "agencies",
       "source_id": "ukhsa",
-      "status": "failed"
+      "status": "success"
     },
     {
-      "checked_at": "2026-10-12T00:42:46+00:00",
-      "error": "HTTPError: 429 Client Error: Too Many Requests for url: https://api.gdeltproject.org/api/v2/doc/doc?query=domainis%3Awho.int+%22Disease+Outbreak+News%22&mode=artlist&format=json&maxrecords=100&timespan=7d&sort=datedesc",
+      "checked_at": "2026-10-12T13:32:34+00:00",
+      "error": "",
       "item_count": 0,
       "section": "agencies",
       "source_id": "who-don",
-      "status": "failed"
+      "status": "success"
     },
     {
-      "checked_at": "2026-10-12T00:42:36+00:00",
+      "checked_at": "2026-10-12T13:32:18+00:00",
       "error": "",
       "item_count": 14,
       "section": "agencies",
@@ -6354,7 +6420,7 @@
       "status": "success"
     },
     {
-      "checked_at": "2026-10-12T00:42:46+00:00",
+      "checked_at": "2026-10-12T13:32:29+00:00",
       "error": "HTTPError: 429 Client Error: Too Many Requests for url: https://api.gdeltproject.org/api/v2/doc/doc?query=domainis%3Awho.int+%22Weekly+Epidemiological+Record%22&mode=artlist&format=json&maxrecords=100&timespan=7d&sort=datedesc",
       "item_count": 0,
       "section": "agencies",
@@ -6362,15 +6428,15 @@
       "status": "failed"
     },
     {
-      "checked_at": "2026-10-12T00:42:35+00:00",
+      "checked_at": "2026-10-12T13:32:17+00:00",
       "error": "",
-      "item_count": 57,
+      "item_count": 58,
       "section": "journals",
       "source_id": "pubmed",
       "status": "success"
     },
     {
-      "checked_at": "2026-10-12T00:42:46+00:00",
+      "checked_at": "2026-10-12T13:32:29+00:00",
       "error": "HTTPError: 429 Client Error: Too Many Requests for url: https://api.gdeltproject.org/api/v2/doc/doc?query=domainis%3Aapnews.com+%28health+OR+medical+OR+disease+OR+outbreak+OR+hospital+OR+vaccine+OR+%22artificial+intelligence%22%29&mode=artlist&format=json&maxrecords=100&timespan=7d&sort=datedesc",
       "item_count": 0,
       "section": "news",
@@ -6378,7 +6444,7 @@
       "status": "failed"
     },
     {
-      "checked_at": "2026-10-12T00:42:46+00:00",
+      "checked_at": "2026-10-12T13:32:29+00:00",
       "error": "HTTPError: 429 Client Error: Too Many Requests for url: https://api.gdeltproject.org/api/v2/doc/doc?query=domainis%3Abbc.com+%28health+OR+medical+OR+disease+OR+outbreak+OR+hospital+OR+vaccine+OR+%22artificial+intelligence%22%29&mode=artlist&format=json&maxrecords=100&timespan=7d&sort=datedesc",
       "item_count": 0,
       "section": "news",
@@ -6386,7 +6452,7 @@
       "status": "failed"
     },
     {
-      "checked_at": "2026-10-12T00:42:36+00:00",
+      "checked_at": "2026-10-12T13:32:17+00:00",
       "error": "",
       "item_count": 4,
       "section": "news",
@@ -6394,7 +6460,7 @@
       "status": "success"
     },
     {
-      "checked_at": "2026-10-12T00:42:46+00:00",
+      "checked_at": "2026-10-12T13:32:29+00:00",
       "error": "HTTPError: 429 Client Error: Too Many Requests for url: https://api.gdeltproject.org/api/v2/doc/doc?query=domainis%3Areuters.com+%28health+OR+medical+OR+disease+OR+outbreak+OR+hospital+OR+vaccine+OR+%22artificial+intelligence%22%29&mode=artlist&format=json&maxrecords=100&timespan=7d&sort=datedesc",
       "item_count": 0,
       "section": "news",
@@ -6402,7 +6468,7 @@
       "status": "failed"
     },
     {
-      "checked_at": "2026-10-12T00:42:36+00:00",
+      "checked_at": "2026-10-12T13:32:17+00:00",
       "error": "",
       "item_count": 10,
       "section": "news",
@@ -6410,7 +6476,7 @@
       "status": "success"
     },
     {
-      "checked_at": "2026-10-12T00:42:46+00:00",
+      "checked_at": "2026-10-12T13:32:29+00:00",
       "error": "HTTPError: 429 Client Error: Too Many Requests for url: https://api.gdeltproject.org/api/v2/doc/doc?query=domainis%3Athepaper.cn+%28health+OR+medical+OR+disease+OR+outbreak+OR+hospital+OR+vaccine+OR+%22artificial+intelligence%22%29&mode=artlist&format=json&maxrecords=100&timespan=7d&sort=datedesc",
       "item_count": 0,
       "section": "news",
@@ -6418,12 +6484,12 @@
       "status": "failed"
     },
     {
-      "checked_at": "2026-10-12T00:43:20+00:00",
-      "error": "JSONDecodeError: Unterminated string starting at: line 109 column 15 (char 4799)",
-      "item_count": 0,
+      "checked_at": "2026-10-12T13:33:09+00:00",
+      "error": "",
+      "item_count": 1,
       "section": "ai_analysis",
       "source_id": "deepseek",
-      "status": "degraded"
+      "status": "success"
     }
   ]
 }
