@@ -44,12 +44,37 @@ class PubMedSource:
         self.topics = topic_config
         self.api_key = api_key or os.getenv("NCBI_API_KEY", "")
         self.http = session()
+        self._last_fetch_request = 0.0
 
     def _params(self, values: dict) -> dict:
         values = {**values, "tool": "research-radar", "email": "zrxzrx1227@163.com"}
         if self.api_key:
             values["api_key"] = self.api_key
         return values
+
+    def _fetch_response(self, params: dict, timeout: int = 90):
+        """Fetch from EFetch while respecting NCBI rate limits and transient errors."""
+        attempts = 6
+        minimum_interval = 0.12 if self.api_key else 0.38
+        for attempt in range(attempts):
+            elapsed = time.monotonic() - self._last_fetch_request
+            if elapsed < minimum_interval:
+                time.sleep(minimum_interval - elapsed)
+            response = self.http.get(
+                f"{EUTILS}/efetch.fcgi",
+                params=params,
+                timeout=timeout,
+            )
+            self._last_fetch_request = time.monotonic()
+            if response.status_code != 429 and response.status_code < 500:
+                response.raise_for_status()
+                return response
+            if attempt == attempts - 1:
+                response.raise_for_status()
+            retry_after = response.headers.get("Retry-After", "").strip()
+            delay = float(retry_after) if retry_after.replace(".", "", 1).isdigit() else min(2 ** (attempt + 1), 20)
+            time.sleep(max(delay, minimum_interval))
+        raise RuntimeError("PubMed EFetch retry loop exited unexpectedly")
 
     def search(
         self,
@@ -81,12 +106,9 @@ class PubMedSource:
         raw_batches: list[str] = []
         for offset in range(0, len(pmids), 200):
             batch = pmids[offset : offset + 200]
-            response = self.http.get(
-                f"{EUTILS}/efetch.fcgi",
-                params=self._params({"db": "pubmed", "id": ",".join(batch), "retmode": "xml"}),
-                timeout=90,
+            response = self._fetch_response(
+                self._params({"db": "pubmed", "id": ",".join(batch), "retmode": "xml"})
             )
-            response.raise_for_status()
             raw_batches.append(response.text)
             root = ET.fromstring(response.content)
             for record in root.findall(".//PubmedArticle"):
