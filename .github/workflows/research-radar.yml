@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
     inputs:
       full_backfill:
-        description: "Run the 365-day PubMed + SCImago Q1 backfill"
+        description: "Compatibility option; the focused 365-day corpus is refreshed on every run"
         required: false
         type: boolean
         default: false
@@ -42,6 +42,20 @@ jobs:
       EMAIL_SMTP_SERVER: ${{ secrets.EMAIL_SMTP_SERVER }}
       EMAIL_SMTP_PORT: ${{ secrets.EMAIL_SMTP_PORT }}
     steps:
+      - name: Validate required email secrets
+        shell: bash
+        run: |
+          missing=()
+          for name in EMAIL_FROM EMAIL_PASSWORD EMAIL_TO; do
+            if [[ -z "${!name}" ]]; then
+              missing+=("$name")
+            fi
+          done
+          if (( ${#missing[@]} )); then
+            echo "::error::Missing required email secret(s): ${missing[*]}"
+            exit 1
+          fi
+
       - uses: actions/checkout@v6
         with:
           fetch-depth: 0
@@ -57,14 +71,13 @@ jobs:
       - name: Environment doctor
         run: python -m research_radar doctor
 
-      - name: Optional 365-day backfill
-        if: github.event_name == 'workflow_dispatch' && inputs.full_backfill
+      - name: Refresh focused 365-day hotspot corpus
         run: python -m research_radar backfill --days 365 --retmax 2000
 
       - name: Collect previous week
         run: python -m research_radar collect --days 7
 
-      - name: Build report and send configured email
+      - name: Build report and send required email
         run: python -m research_radar build-report --send-email
 
       - name: Commit traceable report and manifest

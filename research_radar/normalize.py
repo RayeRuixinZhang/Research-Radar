@@ -63,10 +63,7 @@ def classify(text: str, topic_config: dict) -> list[str]:
 
 
 def matches_hotspot_scope(item, scope_config: dict) -> bool:
-    """Apply the transparent second-stage scope filter to a PubMed item."""
-    allowed_categories = set(scope_config.get("include_categories", []))
-    if allowed_categories.intersection(item.categories):
-        return True
+    """Apply the configured pediatric-infectious scope without a giant OR filter."""
     text = " ".join(
         [
             item.title or "",
@@ -75,4 +72,7 @@ def matches_hotspot_scope(item, scope_config: dict) -> bool:
             item.primary_topic or "",
         ]
     ).casefold()
-    return any(term.casefold() in text for term in scope_config.get("include_terms", []))
+    if any(term.casefold() in text for term in scope_config.get("exclude_terms", [])):
+        return False
+    track_ids = {track.get("id") for track in scope_config.get("tracks", [])}
+    return item.provenance.get("research_track") in track_ids

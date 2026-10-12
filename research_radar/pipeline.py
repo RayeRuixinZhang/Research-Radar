@@ -4,15 +4,16 @@ from datetime import date, datetime, timedelta, timezone
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 from typing import Iterable
+from zoneinfo import ZoneInfo, ZoneInfoNotFoundError
 
-from .ai import analyze_cross_board
+from .ai import analyze_cross_board, analyze_hotspots
 from .configuration import Config
 from .mailer import send_report
 from .models import ResearchItem, SourceStatus
 from .normalize import matches_hotspot_scope
 from .remote import RawArchive
 from .reporting import build_markdown, write_report
-from .scoring import score_hotspots
+from .scoring import score_hotspots, select_journal_papers, select_news
 from .sources import EuropePMCEnricher, OpenAlexEnricher, PubMedSource, collect_registered_sources
 from .storage import Storage
 
@@ -24,6 +25,21 @@ def _run_id() -> str:
 
 def _since(days: int) -> str:
     return (date.today() - timedelta(days=days)).isoformat()
+
+
+def _previous_natural_week(timezone_name: str) -> tuple[date, date]:
+    timezone_name = timezone_name or "Asia/Shanghai"
+    try:
+        zone = ZoneInfo(timezone_name)
+    except ZoneInfoNotFoundError:
+        zone = timezone(timedelta(hours=8)) if timezone_name == "Asia/Shanghai" else timezone.utc
+    today = datetime.now(zone).date()
+    this_monday = today - timedelta(days=today.weekday())
+    return this_monday - timedelta(days=7), this_monday - timedelta(days=1)
+
+
+def _within(items: Iterable[ResearchItem], start: date, end: date) -> list[ResearchItem]:
+    return [item for item in items if start.isoformat() <= (item.published_at or "")[:10] <= end.isoformat()]
 
 
 def _dedupe(items: Iterable[ResearchItem]) -> list[ResearchItem]:
@@ -65,20 +81,29 @@ class Pipeline:
             return 0
         scope = self.config.settings["hotspot_scope"]
         pubmed = PubMedSource(self.config.topics)
-        items, raw = pubmed.collect(
-            days=days,
-            journal_aliases=None,
-            retmax=retmax,
-            extra_term=scope["pubmed_query"],
-        )
+        tracks = scope.get("tracks", [])
+        per_track = max(100, retmax // max(1, len(tracks)))
+        items: list[ResearchItem] = []
+        raw: dict[str, dict] = {}
+        for track in tracks:
+            query = f"({scope['population_query']}) AND ({scope['disease_query']}) AND ({track['query']})"
+            track_items, track_raw = pubmed.collect(
+                days=days, journal_aliases=None, retmax=per_track, extra_term=query
+            )
+            for item in track_items:
+                item.provenance["research_track"] = track["id"]
+                item.provenance["research_track_label"] = track["label"]
+                item.primary_topic = track["label"]
+            items.extend(track_items)
+            raw[track["id"]] = track_raw
         self._archive("pubmed-hotspot", raw)
-        items = [
+        items = _dedupe([
             item for item in items
             if item.doi
             and not item.is_retracted
             and q1.intersection(item.issns)
             and matches_hotspot_scope(item, scope)
-        ]
+        ])[:retmax]
         EuropePMCEnricher().enrich(items, max_items=100)
         openalex_raw = OpenAlexEnricher().enrich(items, max_items=retmax)
         if openalex_raw:
@@ -104,13 +129,19 @@ class Pipeline:
 
     def collect(self, days: int = 7) -> dict:
         statuses: list[SourceStatus] = []
+        timezone_name = self.config.settings.get("project", {}).get("timezone", "Asia/Shanghai")
+        week_start, week_end = _previous_natural_week(timezone_name)
         print("[collect] PubMed journal search")
         pubmed = PubMedSource(self.config.topics)
-        papers, academic_raw = pubmed.collect(days, self.config.journal_aliases(), retmax=200)
+        papers, academic_raw = pubmed.collect(
+            days, self.config.journal_aliases(), retmax=300,
+            date_from=week_start if days == 7 else None,
+            date_to=week_end if days == 7 else None,
+        )
         self._archive("pubmed-journals", academic_raw)
         papers = [
             item for item in papers
-            if item.doi and not item.is_retracted and item.categories
+            if (item.doi or item.pmid) and not item.is_retracted
         ]
         EuropePMCEnricher().enrich(papers, max_items=50)
         openalex_raw = OpenAlexEnricher().enrich(papers, max_items=500)
@@ -140,23 +171,37 @@ class Pipeline:
         for source_id, payload in agency_raw.items():
             self._archive(f"agency-{source_id}", payload)
 
-        cutoff = _since(days)
-        news = [item for item in _dedupe(news) if item.published_at >= cutoff and item.url]
-        agencies = [item for item in _dedupe(agencies) if item.published_at >= cutoff and item.url]
+        range_start = week_start if days == 7 else date.today() - timedelta(days=days)
+        range_end = week_end if days == 7 else date.today()
+        news = [item for item in _within(_dedupe(news), range_start, range_end) if item.url]
+        agencies = [item for item in _within(_dedupe(agencies), range_start, range_end) if item.url]
+        if not agencies and any(status.status == "success" for status in agency_statuses):
+            known_urls = {item.url for item in self.storage.load_items("agency")}
+            for fallback_days in (14, 30):
+                expanded, expanded_statuses, expanded_raw = collect_registered_sources(
+                    self.config.sources.get("agencies", []), "agencies", fallback_days, self.config.topics
+                )
+                statuses.extend(expanded_statuses)
+                for source_id, payload in expanded_raw.items():
+                    self._archive(f"agency-{source_id}-fallback-{fallback_days}", payload)
+                fallback_start = week_end - timedelta(days=fallback_days - 1)
+                agencies = [
+                    item for item in _within(_dedupe(expanded), fallback_start, week_end)
+                    if item.url and item.url not in known_urls
+                ]
+                if agencies:
+                    for item in agencies:
+                        item.provenance["agency_window_days"] = fallback_days
+                    statuses.append(SourceStatus(
+                        "layered-fallback", "agencies", "degraded", len(agencies),
+                        f"上一自然周无结果；时间范围明确扩展为截至{week_end.isoformat()}的最近{fallback_days}天",
+                    ))
+                    break
         self.storage.upsert_items([*papers, *news, *agencies])
         self.storage.save_statuses(self.run_id, statuses)
         self.archive.upload_database(self.storage.path)
         print(f"[collect] stored papers={len(papers)} news={len(news)} agencies={len(agencies)}")
 
-        news_success = any(status.status == "success" for status in news_statuses)
-        agency_success = any(status.status == "success" for status in agency_statuses)
-        if not news_success or not agency_success:
-            failed = []
-            if not news_success:
-                failed.append("news")
-            if not agency_success:
-                failed.append("agencies")
-            raise RuntimeError(f"All configured sources failed for required section(s): {', '.join(failed)}")
         return {"papers": len(papers), "news": len(news), "agencies": len(agencies), "statuses": statuses}
 
     def build_report(self, send_email: bool = False) -> tuple[Path, Path, Path]:
@@ -169,12 +214,20 @@ class Pipeline:
             if matches_hotspot_scope(item, settings["hotspot_scope"])
         ]
         hotspots = score_hotspots(hotspot_items, settings, self.config.scimago_issns())
-        cutoff = _since(settings["windows"]["weekly_days"])
-        news = self.storage.load_items("news", cutoff)[: settings["limits"]["news"]]
-        agencies = self.storage.load_items("agency", cutoff)[: settings["limits"]["agencies"]]
-        journals = [
-            item for item in self.storage.load_items("journal_paper", cutoff) if item.doi
-        ][: settings["limits"]["journals"]]
+        week_start, week_end = _previous_natural_week(
+            settings.get("project", {}).get("timezone", "Asia/Shanghai")
+        )
+        weekly_news = _within(self.storage.load_items("news"), week_start, week_end)
+        news = select_news(weekly_news, settings, self.config.sources.get("news", []))
+        weekly_agencies = _within(self.storage.load_items("agency"), week_start, week_end)
+        if not weekly_agencies:
+            candidates = self.storage.load_items("agency", (week_end - timedelta(days=29)).isoformat())
+            weekly_agencies = [item for item in candidates if item.provenance.get("agency_window_days")]
+        agencies = weekly_agencies[: settings["limits"]["agencies"]]
+        journals = select_journal_papers(
+            [item for item in _within(self.storage.load_items("journal_paper"), week_start, week_end) if item.doi or item.pmid],
+            settings,
+        )
         source_names = {"pubmed": "PubMed"}
         for section in ("news", "agencies"):
             source_names.update(
@@ -184,6 +237,9 @@ class Pipeline:
             item.source_name = source_names.get(item.source_id, item.source_id)
         statuses = self.storage.latest_statuses()
         previous_artifacts = self.storage.latest_raw_artifacts()
+        hotspots, hotspot_ai_metadata, hotspot_ai_raw = analyze_hotspots(
+            self.config.root, settings, hotspots
+        )
         analysis = analyze_cross_board(
             self.config.root, settings, hotspots, news, agencies, journals
         )
@@ -197,13 +253,22 @@ class Pipeline:
                 "error", analysis.metadata.get("status", "")
             ),
         )
-        self.storage.save_statuses(self.run_id, [ai_status])
+        hotspot_ai_success = hotspot_ai_metadata.get("status") in {"success", "cache_hit"}
+        hotspot_ai_status = SourceStatus(
+            "deepseek-hotspots", "hotspot_ai_analysis",
+            "success" if hotspot_ai_success else "degraded",
+            int(hotspot_ai_metadata.get("enriched_hotspots", 0)),
+            "" if hotspot_ai_success else hotspot_ai_metadata.get("error", hotspot_ai_metadata.get("status", "")),
+        )
+        self.storage.save_statuses(self.run_id, [ai_status, hotspot_ai_status])
         statuses = [
             status for status in statuses
             if not (status.source_id == "deepseek" and status.section == "ai_analysis")
-        ] + [ai_status]
+        ] + [ai_status, hotspot_ai_status]
         if analysis.raw:
             self._archive("ai-cross-board", analysis.raw)
+        if hotspot_ai_raw:
+            self._archive("ai-hotspots", hotspot_ai_raw)
         markdown = build_markdown(
             hotspots,
             news,
@@ -231,10 +296,9 @@ class Pipeline:
                 "label": settings["hotspot_scope"]["label"],
                 "window_days": settings["windows"]["hotspot_days"],
                 "pubmed_retmax": 2000,
-                "pubmed_query": settings["hotspot_scope"]["pubmed_query"],
-                "second_stage_categories": settings["hotspot_scope"]["include_categories"],
-                "second_stage_terms": settings["hotspot_scope"]["include_terms"],
+                "research_tracks": [track["id"] for track in settings["hotspot_scope"]["tracks"]],
             },
+            hotspot_ai_metadata,
         )
         if send_email:
             send_report(paths[0], paths[2])

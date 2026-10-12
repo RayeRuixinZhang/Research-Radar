@@ -19,6 +19,7 @@ selected:
   - {name: BMJ Global Health, aliases: [BMJ Glob Health]}
   - {name: BMJ Quality & Safety, aliases: [BMJ Qual Saf]}
   - {name: Nature Medicine, aliases: [Nat Med]}
+  - {name: Nature Communications, aliases: [Nat Commun]}
   - {name: Nature Microbiology, aliases: [Nat Microbiol]}
   - {name: Nature Biomedical Engineering, aliases: [Nat Biomed Eng]}
   - {name: Nature Machine Intelligence, aliases: [Nat Mach Intell]}
@@ -27,4 +28,8 @@ selected:
   - {name: Cell Reports Medicine, aliases: [Cell Rep Med]}
   - {name: Cell Host & Microbe, aliases: [Cell Host Microbe]}
   - {name: Cell Systems, aliases: [Cell Syst]}
+  - {name: Pediatrics, aliases: [Pediatrics]}
+  - {name: Clinical Infectious Diseases, aliases: [Clin Infect Dis]}
+  - {name: American Journal of Epidemiology, aliases: [Am J Epidemiol]}
+  - {name: Epidemiology, aliases: [Epidemiology]}
 

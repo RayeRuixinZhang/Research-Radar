@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 from email.message import EmailMessage
-import mimetypes
 import os
 from pathlib import Path
 import smtplib
@@ -10,9 +9,21 @@ import smtplib
 def send_report(report_path: Path, html_path: Path) -> bool:
     sender = os.getenv("EMAIL_FROM", "")
     password = os.getenv("EMAIL_PASSWORD", "")
-    recipient = os.getenv("EMAIL_TO", "zrxzrx1227@163.com")
-    if not sender or not password or not recipient:
-        return False
+    recipient = os.getenv("EMAIL_TO", "")
+    missing = [
+        name
+        for name, value in (
+            ("EMAIL_FROM", sender),
+            ("EMAIL_PASSWORD", password),
+            ("EMAIL_TO", recipient),
+        )
+        if not value
+    ]
+    if missing:
+        raise RuntimeError(
+            "Email delivery was requested but required configuration is missing: "
+            + ", ".join(missing)
+        )
     host = os.getenv("EMAIL_SMTP_SERVER") or ("smtp.163.com" if sender.endswith("@163.com") else "")
     port = int(os.getenv("EMAIL_SMTP_PORT") or "465")
     if not host:
@@ -26,5 +37,5 @@ def send_report(report_path: Path, html_path: Path) -> bool:
     with smtplib.SMTP_SSL(host, port, timeout=30) as client:
         client.login(sender, password)
         client.send_message(message)
+    print(f"[email] SMTP server accepted report delivery to {recipient}")
     return True
-

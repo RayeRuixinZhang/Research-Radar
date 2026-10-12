@@ -29,8 +29,8 @@ def test_classification():
 
 def test_hotspot_scope_uses_categories_and_terms():
     scope = {
-        "include_categories": ["infectious_disease"],
-        "include_terms": ["epidemiolog", "vaccine"],
+        "exclude_terms": ["adult copd"],
+        "tracks": [{"id": "phenotype"}],
     }
     unrelated = ResearchItem(
         kind="paper", source_id="x", source_name="x", title="Cancer metabolism",
@@ -39,11 +39,12 @@ def test_hotspot_scope_uses_categories_and_terms():
     vaccine = ResearchItem(
         kind="paper", source_id="x", source_name="x", title="Vaccine uptake",
         summary="Population study.", url="", published_at="2026-01-01",
+        provenance={"research_track": "phenotype"},
     )
     labelled = ResearchItem(
         kind="paper", source_id="x", source_name="x", title="Study",
         summary="", url="", published_at="2026-01-01",
-        categories=["infectious_disease"],
+        categories=["infectious_disease"], provenance={"research_track": "phenotype"},
     )
     assert not matches_hotspot_scope(unrelated, scope)
     assert matches_hotspot_scope(vaccine, scope)

@@ -12,91 +12,135 @@ windows:
 limits:
   hotspots: 10
   representative_papers: 3
-  news: 15
-  agencies: 20
-  journals: 30
+  news: 10
+  agencies: 10
+  journals: 15
   summary_characters: 250
 
 hotspot_score:
-  volume: 0.40
-  acceleration: 0.30
-  citation: 0.20
-  diversity: 0.10
-  minimum_papers: 5
-  minimum_journals: 3
+  research_fit: 0.30
+  methodological_novelty: 0.20
+  clinical_value: 0.20
+  acceleration: 0.15
+  citation: 0.10
+  multicenter_evidence: 0.05
+  minimum_papers: 2
+  minimum_journals: 1
+
+journal_board:
+  score_weights:
+    research_importance: 25
+    scientific_innovation: 25
+    evidence_quality: 20
+    future_research_value: 20
+    background_relevance: 10
+  category_targets:
+    clinical_epidemiology: 8
+    biomedical_breakthrough: 2
+    innovative_methods: 3
+    interdisciplinary: 2
+  excluded_publication_types:
+    - editorial
+    - comment
+    - news
+    - letter
+    - published erratum
+    - retracted publication
+
+news_board:
+  source_candidate_limit: 3
+  score_weights:
+    topic_relevance: 30
+    clinical_public_health_impact: 25
+    news_importance: 20
+    source_credibility: 15
+    research_inspiration: 10
+  category_targets:
+    child_health: 4
+    infectious_disease: 3
+    hospital_services: 3
 
 hotspot_scope:
-  version: infectious-epidemiology-v1
-  label: 流行病学与感染相关医学专题
-  pubmed_query: >-
-    (
-      "Epidemiology"[MeSH Terms] OR epidemiolog*[Title/Abstract]
-      OR "Communicable Diseases"[MeSH Terms] OR infectious[Title/Abstract]
-      OR infection*[Title/Abstract] OR outbreak*[Title/Abstract]
-      OR epidemic*[Title/Abstract] OR pandemic*[Title/Abstract]
-      OR pathogen*[Title/Abstract]
-      OR "Public Health"[MeSH Terms] OR "public health"[Title/Abstract]
-      OR "Population Health"[Title/Abstract]
-      OR "Pediatrics"[MeSH Terms] OR pediatric*[Title/Abstract]
-      OR paediatric*[Title/Abstract] OR child*[Title/Abstract]
-      OR infant*[Title/Abstract] OR neonatal[Title/Abstract]
-      OR "Respiratory Tract Diseases"[MeSH Terms] OR respiratory[Title/Abstract]
-      OR pneumonia[Title/Abstract] OR influenza[Title/Abstract]
-      OR asthma[Title/Abstract] OR COPD[Title/Abstract]
-      OR "Vaccines"[MeSH Terms] OR vaccine*[Title/Abstract]
-      OR vaccination[Title/Abstract] OR immunization[Title/Abstract]
-      OR immunisation[Title/Abstract]
-      OR "Cross Infection"[MeSH Terms] OR "infection control"[Title/Abstract]
-      OR "healthcare-associated infection"[Title/Abstract]
-      OR "hospital-acquired infection"[Title/Abstract]
-      OR "Drug Resistance, Microbial"[MeSH Terms]
-      OR "antimicrobial resistance"[Title/Abstract]
-      OR surveillance[Title/Abstract] OR "disease monitoring"[Title/Abstract]
-      OR (
-        ("artificial intelligence"[Title/Abstract] OR "machine learning"[Title/Abstract]
-         OR "predictive model"[Title/Abstract])
-        AND (disease[Title/Abstract] OR infection*[Title/Abstract]
-             OR outbreak*[Title/Abstract] OR surveillance[Title/Abstract])
-      )
-    )
-  include_categories:
-    - public_health
-    - infectious_disease
-    - pediatrics
-    - respiratory
-    - infection_control
-    - medical_ai
-  include_terms:
-    - epidemiolog
-    - infectious
-    - infection
-    - outbreak
-    - epidemic
-    - pandemic
-    - pathogen
-    - public health
-    - population health
-    - pediatric
-    - paediatric
-    - child
-    - infant
-    - neonatal
-    - respiratory
-    - pneumonia
-    - influenza
-    - asthma
-    - copd
-    - vaccine
-    - vaccination
-    - immunization
-    - immunisation
-    - infection control
-    - healthcare-associated
-    - hospital-acquired
-    - antimicrobial resistance
-    - surveillance
-    - disease monitoring
-    - predictive model
+  version: pediatric-infectious-clinical-epidemiology-v2
+  label: 儿童感染临床流行病学与疾病轨迹研究雷达
+  population_query: >-
+    (child*[Title/Abstract] OR pediatric*[Title/Abstract] OR paediatric*[Title/Abstract]
+     OR infant*[Title/Abstract] OR adolescent*[Title/Abstract] OR "Pediatrics"[MeSH Terms])
+  disease_query: >-
+    (infection*[Title/Abstract] OR "respiratory infection"[Title/Abstract]
+     OR pneumonia[Title/Abstract] OR bronchiolitis[Title/Abstract]
+     OR sepsis[Title/Abstract] OR RSV[Title/Abstract] OR influenza[Title/Abstract]
+     OR "respiratory virus"[Title/Abstract] OR "Communicable Diseases"[MeSH Terms])
+  exclude_terms:
+    - adult copd
+    - adult asthma
+    - lung cancer
+    - histopathology image
+    - surgical prediction
+    - cardiovascular prediction
+    - oncology machine learning
+  tracks:
+    - id: pediatric_ari_phenotypes
+      label: 儿童急性呼吸道感染临床表型与疾病轨迹
+      priority: core
+      query: >-
+        (phenotyp*[Title/Abstract] OR subphenotyp*[Title/Abstract] OR endotyp*[Title/Abstract]
+         OR clustering[Title/Abstract] OR "cluster analysis"[Title/Abstract]
+         OR "latent class"[Title/Abstract] OR "latent profile"[Title/Abstract]
+         OR trajectory[Title/Abstract])
+    - id: infection_outcome_prediction
+      label: 儿童感染严重程度与临床结局预测
+      priority: core
+      query: >-
+        ("risk prediction"[Title/Abstract] OR "prediction model"[Title/Abstract]
+         OR "prognostic model"[Title/Abstract] OR "risk stratification"[Title/Abstract]
+         OR "clinical deterioration"[Title/Abstract] OR "severity prediction"[Title/Abstract]
+         OR "early warning"[Title/Abstract])
+    - id: dynamic_deterioration_prediction
+      label: 住院后24至48小时动态恶化预测
+      priority: high
+      query: >-
+        ("dynamic prediction"[Title/Abstract] OR "longitudinal prediction"[Title/Abstract]
+         OR "time-varying"[Title/Abstract] OR "time-dependent model"[Title/Abstract]
+         OR "trajectory model"[Title/Abstract] OR "temporal model"[Title/Abstract]
+         OR "real-time prediction"[Title/Abstract] OR "early deterioration"[Title/Abstract])
+    - id: virus_host_severity
+      label: 病毒宿主表型与疾病严重程度
+      priority: core
+      query: >-
+        (("host response"[Title/Abstract] OR "host phenotype"[Title/Abstract]
+          OR "immune phenotype"[Title/Abstract] OR "host-pathogen interaction"[Title/Abstract]
+          OR "viral load"[Title/Abstract] OR coinfection[Title/Abstract]
+          OR microbiome[Title/Abstract] OR transcriptomic*[Title/Abstract]
+          OR proteomic*[Title/Abstract] OR metabolomic*[Title/Abstract])
+         AND (severity[Title/Abstract] OR progression[Title/Abstract] OR outcome*[Title/Abstract]))
+    - id: model_transportability
+      label: 预测模型泛化能力与外部验证
+      priority: secondary
+      query: >-
+        ("external validation"[Title/Abstract] OR "multicenter validation"[Title/Abstract]
+         OR generalizab*[Title/Abstract] OR transportab*[Title/Abstract]
+         OR calibration[Title/Abstract] OR fairness[Title/Abstract]
+         OR "domain shift"[Title/Abstract] OR "domain adaptation"[Title/Abstract])
+    - id: medically_complex_children
+      label: 复杂慢性病儿童的感染风险与结局
+      priority: secondary
+      query: >-
+        (("children with medical complexity"[Title/Abstract]
+          OR "complex chronic condition"[Title/Abstract] OR multimorbid*[Title/Abstract]
+          OR "medical complexity"[Title/Abstract])
+         AND (hospitalization[Title/Abstract] OR outcome*[Title/Abstract]
+              OR phenotyp*[Title/Abstract] OR prediction[Title/Abstract]))
+    - id: severe_respiratory_viruses
+      label: RSV及其他呼吸道病毒严重疾病
+      priority: secondary
+      query: >-
+        ((RSV[Title/Abstract] OR "respiratory syncytial virus"[Title/Abstract]
+          OR influenza[Title/Abstract] OR rhinovirus[Title/Abstract]
+          OR adenovirus[Title/Abstract] OR "respiratory virus"[Title/Abstract])
+         AND (severity[Title/Abstract] OR hospitalization[Title/Abstract]
+              OR PICU[Title/Abstract] OR ventilation[Title/Abstract]
+              OR phenotyp*[Title/Abstract] OR prediction[Title/Abstract]))
 
 storage:
   sqlite_path: output/research-radar.db
@@ -108,8 +152,16 @@ storage:
 ai:
   enabled: true
   provider: deepseek
-  model: deepseek-v4-flash
+  model: deepseek-flash
   endpoint: https://api.deepseek.com/chat/completions
   prompt_path: prompts/cross_board_analysis_zh.md
   max_tokens: 2400
   timeout_seconds: 120
+
+hotspot_ai:
+  enabled: true
+  prompt_path: prompts/hotspot_analysis_zh.md
+  max_tokens: 3200
+  timeout_seconds: 120
+  batch_size: 5
+  cache_dir: output/ai-cache/hotspots

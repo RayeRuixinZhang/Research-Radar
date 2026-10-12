@@ -2,9 +2,13 @@ news:
   - {id: reuters, name: Reuters, domain: reuters.com, mode: gdelt, priority: 6}
   - {id: ap, name: AP Health & Science, domain: apnews.com, mode: gdelt, priority: 5}
   - {id: bbc, name: BBC Health, domain: bbc.com, mode: gdelt, priority: 5}
+  - {id: guardian, name: The Guardian, domain: theguardian.com, mode: gdelt, priority: 5}
   - {id: stat, name: STAT, url: "https://www.statnews.com/feed/", mode: rss, priority: 5}
+  - {id: cidrap, name: CIDRAP, domain: cidrap.umn.edu, mode: gdelt, priority: 5}
   - {id: kff, name: KFF Health News, url: "https://kffhealthnews.org/feed/", mode: rss, priority: 5}
+  - {id: medicalxpress, name: Medical Xpress, domain: medicalxpress.com, mode: gdelt, priority: 4}
   - {id: thepaper, name: 澎湃新闻, domain: thepaper.cn, mode: gdelt, priority: 4}
+  - {id: xinhua, name: 新华网, domain: news.cn, mode: gdelt, priority: 5}
 
 agencies:
   - {id: who-news, name: WHO Newsroom, country: Global, url: "https://www.who.int/rss-feeds/news-english.xml", mode: rss}

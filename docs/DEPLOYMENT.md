@@ -5,7 +5,7 @@
 | Secret | 必需 | 用途 |
 |---|---:|---|
 | `OPENALEX_API_KEY` | 建议 | OpenAlex 免费 API Key |
-| `DEEPSEEK_API_KEY` | 板块5必需 | DeepSeek API Key，仅用于跨板块科研启发 |
+| `DEEPSEEK_API_KEY` | 板块4和5建议 | DeepSeek API Key，用于热点结构化增强和跨板块科研启发；缺失时自动回退 |
 | `NCBI_API_KEY` | 否 | 提高 PubMed E-utilities 速率 |
 | `S3_BUCKET_NAME` | R2 时必需 | 建议 `research-radar-data` |
 | `S3_ACCESS_KEY_ID` | R2 时必需 | R2 Token Access Key |
@@ -20,17 +20,22 @@
 
 Secrets 不得写入配置文件、报告或 manifest。
 
+周报工作流把邮件作为必需交付项：`EMAIL_FROM`、`EMAIL_PASSWORD` 或 `EMAIL_TO`
+任一缺失时会立即失败；SMTP 登录或发送失败也会让工作流失败。成功日志中的
+`[email] SMTP server accepted report delivery` 表示 SMTP 服务器已接受邮件，但不保证
+收件服务商最终投递到收件箱；若未收到，请继续检查垃圾邮件、退信和 `EMAIL_TO` 的值。
+本项目当前不包含手机短信网关，通知渠道是 SMTP 邮件。
+
 ## DeepSeek
 
 1. 在 DeepSeek 开放平台创建 API Key。
 2. 仓库 **Settings → Secrets and variables → Actions → New repository secret**。
 3. 名称必须填写 `DEEPSEEK_API_KEY`，值粘贴 API Key。
-4. 项目默认使用 `deepseek-v4-flash` 非思考模式和 JSON Output，以控制费用并稳定解析。
+4. 项目默认使用官方当前推荐的 `deepseek-flash` 非思考模式和 JSON Output。板块4与板块5使用独立提示词、token上限和缓存/失败边界。
 
-板块5只向模型发送板块1–4已经公开展示的标题、短摘要、标签和来源标识，不发送
+板块4只批量发送已筛选热点的代表性论文；板块5只发送板块1–4已经公开展示的标题、短摘要、标签和来源标识。不发送
 R2密钥、邮箱密码或其他 Secrets。AI请求与响应会去除认证信息后归档到R2，manifest
-仅保存模型、提示词版本、输入哈希、条目数和token用量。模型不可用时，前四板块、
-邮件和Pages仍会正常生成。
+仅保存模型、提示词版本、输入哈希、条目数和token用量。模型不可用时，板块4使用确定性Research Gap/博士问题回退，其他板块、邮件和Pages仍会正常生成。
 
 ## Pages
 

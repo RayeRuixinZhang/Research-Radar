@@ -2,7 +2,8 @@ import json
 from pathlib import Path
 
 from research_radar.models import ResearchItem, SourceStatus
-from research_radar.reporting import build_markdown, write_report
+from research_radar.reporting import _agency_empty_message, build_markdown, write_report
+from research_radar.pipeline import _previous_natural_week
 from research_radar.storage import Storage
 
 
@@ -24,6 +25,14 @@ def test_storage_is_idempotent(tmp_path: Path):
     assert store.load_items("news") == []
 
 
+def test_previous_natural_week_and_agency_failure_message():
+    start, end = _previous_natural_week("Asia/Shanghai")
+    assert start.weekday() == 0 and end.weekday() == 6
+    assert (end - start).days == 6
+    message = _agency_empty_message([SourceStatus("who", "agencies", "failed", 0, "timeout")])
+    assert "数据源暂时无法访问" in message
+
+
 def test_golden_report_and_manifest(tmp_path: Path):
     news = sample("news", 1)
     agency = sample("agency", 2)
@@ -32,7 +41,7 @@ def test_golden_report_and_manifest(tmp_path: Path):
     markdown = build_markdown([], [news], [agency], [paper], [status], {"status": "test"})
     assert all(f"## {index}." in markdown for index in range(1, 6))
     assert "AI 分析尚未配置" in markdown
-    assert markdown.index("## 1. 重点期刊近期论文") < markdown.index("## 4. 近一年专题科研热点")
+    assert markdown.index("## 1. CNS期刊近期论文") < markdown.index("## 4. 近一年专题科研热点")
     assert "DOI: 10.1000/test" in markdown
     assert "医疗" in markdown
     assert "![" not in markdown

@@ -39,7 +39,8 @@ class ResearchItem:
         from .normalize import canonical_url, normalize_doi, normalize_issn, truncate_summary
 
         self.title = " ".join((self.title or "").split())
-        self.summary = truncate_summary(self.summary or "", 250)
+        summary_limit = 4000 if self.kind in {"paper", "journal_paper", "hotspot_paper"} else 250
+        self.summary = truncate_summary(self.summary or "", summary_limit)
         self.doi = normalize_doi(self.doi)
         self.issns = sorted({x for value in self.issns if (x := normalize_issn(value))})
         self.url = canonical_url(self.url)
@@ -90,6 +91,14 @@ class Hotspot:
     journal_count: int
     mesh_terms: list[str]
     papers: list[ResearchItem]
+    trend: str = ""
+    why_it_matters: str = ""
+    research_designs: list[str] = field(default_factory=list)
+    methods: list[str] = field(default_factory=list)
+    research_gap: str = ""
+    potential_phd_question: str = ""
+    analysis_basis: list[str] = field(default_factory=list)
+    ai_status: str = "fallback"
 
     def to_dict(self) -> dict[str, Any]:
         return {
@@ -99,5 +108,13 @@ class Hotspot:
             "journal_count": self.journal_count,
             "mesh_terms": self.mesh_terms,
             "papers": [paper.to_dict() for paper in self.papers],
+            "trend": self.trend,
+            "why_it_matters": self.why_it_matters,
+            "research_designs": self.research_designs,
+            "methods": self.methods,
+            "research_gap": self.research_gap,
+            "potential_phd_question": self.potential_phd_question,
+            "analysis_basis": self.analysis_basis,
+            "ai_status": self.ai_status,
         }
 

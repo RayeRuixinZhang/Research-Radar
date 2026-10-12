@@ -8,6 +8,7 @@ import re
 import subprocess
 
 from .models import Hotspot, ResearchItem, SourceStatus
+from .normalize import truncate_summary
 
 CATEGORY_LABELS = {
     "public_health": "公共卫生",
@@ -18,6 +19,12 @@ CATEGORY_LABELS = {
     "pediatrics": "儿科学",
     "respiratory": "呼吸道疾病",
     "infection_control": "医院感染",
+    "clinical_epidemiology": "临床医学与流行病学",
+    "biomedical_breakthrough": "重大生物医学突破",
+    "innovative_methods": "创新研究方法",
+    "interdisciplinary": "跨学科探索",
+    "child_health": "儿童健康",
+    "hospital_services": "医院与医疗服务",
 }
 
 
@@ -32,16 +39,39 @@ def report_key(today: date | None = None) -> tuple[str, int, int]:
 
 
 def _paper_line(item: ResearchItem) -> str:
-    doi = f"[DOI: {item.doi}](https://doi.org/{item.doi})"
+    identifier = (
+        f"[DOI: {item.doi}](https://doi.org/{item.doi})"
+        if item.doi else f"[PMID: {item.pmid}](https://pubmed.ncbi.nlm.nih.gov/{item.pmid}/)"
+    )
     tags = _tags(item)
-    return f"- **{item.title}**  \n  {item.summary or '无可用摘要'}  \n  {item.journal} · {item.published_at} · {tags} · {doi}"
+    main = item.provenance.get("journal_main_category")
+    article_type = item.provenance.get("article_type") or (
+        item.provenance.get("publication_types", ["未标明"])[0]
+        if item.provenance.get("publication_types") else "未标明"
+    )
+    category = CATEGORY_LABELS.get(main, main) if main else tags
+    summary = truncate_summary(item.summary, 600) if item.summary else "无可用摘要"
+    return f"- **{item.title}**  \n  {summary}  \n  {item.journal} · {item.published_at} · {article_type} · {category} · {identifier}"
 
 
 def _linked_line(item: ResearchItem) -> str:
     tags = _tags(item)
     source = item.source_name or item.source_id
     country = f" · {item.country}" if item.country else ""
-    return f"- **[{item.title}]({item.url})**  \n  {item.summary or '无可用摘要'}  \n  {source}{country} · {item.published_at} · {tags}"
+    main = item.provenance.get("news_main_category")
+    category = CATEGORY_LABELS.get(main, main) if main else tags
+    expanded = item.provenance.get("agency_window_days")
+    window = f" · 扩展至最近{expanded}天" if expanded else ""
+    return f"- **[{item.title}]({item.url})**  \n  {item.summary or '无可用摘要'}  \n  {source}{country} · {item.published_at} · {category}{window}"
+
+
+def _agency_empty_message(statuses: list[SourceStatus]) -> str:
+    agency_statuses = [status for status in statuses if status.section == "agencies" and status.source_id != "layered-fallback"]
+    if agency_statuses and not any(status.status == "success" for status in agency_statuses):
+        return "_部分卫生机构数据源暂时无法访问，本期结果可能不完整。_"
+    if any(status.status == "failed" for status in agency_statuses):
+        return "_在已成功检索的机构来源中未发现符合条件的动态；部分数据源暂时无法访问，本期结果可能不完整。_"
+    return "_在已成功检索的机构来源中，未发现符合条件的动态。_"
 
 
 def build_markdown(
@@ -69,16 +99,16 @@ def build_markdown(
         ),
         "> 本报告不含图片，不转载新闻或论文全文。",
         "",
-        "## 1. 重点期刊近期论文",
+        "## 1. CNS期刊近期论文",
         "",
     ]
     lines.extend(_paper_line(item) for item in journals) if journals else lines.append(
-        "_本周未检索到符合条件且带 DOI 的重点期刊论文。_"
+        "_本周未检索到符合条件且带 DOI 或 PMID 的 CNS 及高水平期刊论文。_"
     )
     lines.extend(["", "## 2. 医学与公共卫生新闻", ""])
     lines.extend(_linked_line(item) for item in news) if news else lines.append("_本周未检索到符合条件的新闻。_")
     lines.extend(["", "## 3. 世界及主要国家卫生机构动态", ""])
-    lines.extend(_linked_line(item) for item in agencies) if agencies else lines.append("_本周未检索到符合条件的机构动态。_")
+    lines.extend(_linked_line(item) for item in agencies) if agencies else lines.append(_agency_empty_message(statuses))
     lines.extend(["", "## 4. 近一年专题科研热点", ""])
     if not hotspots:
         status = scimago_metadata.get("status", "unknown")
@@ -89,6 +119,16 @@ def build_markdown(
                 f"### {index}. {hotspot.topic}",
                 "",
                 f"热点分数 **{hotspot.score:.3f}** · {hotspot.paper_count} 篇 · {hotspot.journal_count} 种期刊",
+                "",
+                f"**为什么值得关注：** {hotspot.why_it_matters}",
+                f"**最近一年研究趋势：** {hotspot.trend or '证据不足'}",
+                f"**常用研究设计：** {'、'.join(hotspot.research_designs) or '当前代表性文献未能可靠识别'}",
+                f"**常用方法：** {'、'.join(hotspot.methods) or '当前代表性文献未能可靠识别'}",
+                f"**Research Gap：** {hotspot.research_gap}",
+                f"**Potential PhD Question：** {hotspot.potential_phd_question}",
+                f"**分析方式：** {'DeepSeek结构化分析' if hotspot.ai_status == 'success' else '确定性回退分析'}",
+                "",
+                "**代表性论文：**",
                 "",
             ]
         )
@@ -175,6 +215,7 @@ def write_report(
     raw_artifacts: list[dict],
     ai_metadata: dict | None = None,
     hotspot_scope: dict | None = None,
+    hotspot_ai_metadata: dict | None = None,
 ) -> tuple[Path, Path, Path]:
     key, year, _ = report_key()
     report_path = root / "reports" / str(year) / f"{key}.md"
@@ -202,6 +243,7 @@ def write_report(
         "source_statuses": [status.to_dict() for status in statuses],
         "raw_artifacts": raw_artifacts,
         "ai_analysis": ai_metadata or {"status": "not_configured"},
+        "hotspot_ai_analysis": hotspot_ai_metadata or {"status": "not_configured"},
         "hotspot_scope": hotspot_scope or {},
     }
     manifest_path.write_text(json.dumps(manifest, ensure_ascii=False, indent=2, sort_keys=True), encoding="utf-8")

@@ -6,7 +6,7 @@
 疫苗与儿科/呼吸道感染，以及数据驱动的医学研究。输入是 Research Radar 板块1–4
 的结构化条目，不是完整论文或新闻全文：
 
-- `priority_journals`：板块1，重点期刊近期论文；
+- `priority_journals`：板块1，CNS期刊近期论文；
 - `news`：板块2，医学与公共卫生新闻；
 - `health_agencies`：板块3，卫生机构公告、预警、指南与政策；
 - `hotspots`：板块4，近一年专题科研热点。

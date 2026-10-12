@@ -41,7 +41,7 @@ def _item_payload(ref: str, item: ResearchItem, board: int) -> dict[str, Any]:
         "ref": ref,
         "board": board,
         "title": item.title,
-        "summary": item.summary,
+        "summary": item.summary[:1200],
         "source": item.source_name or item.source_id,
         "published_at": item.published_at,
         "categories": item.categories,
@@ -82,6 +82,12 @@ def _analysis_input(
                 "paper_count": hotspot.paper_count,
                 "journal_count": hotspot.journal_count,
                 "mesh_terms": hotspot.mesh_terms,
+                "trend": hotspot.trend,
+                "why_it_matters": hotspot.why_it_matters,
+                "research_designs": hotspot.research_designs,
+                "methods": hotspot.methods,
+                "research_gap": hotspot.research_gap,
+                "potential_phd_question": hotspot.potential_phd_question,
                 "representative_papers": papers,
             }
         )
@@ -179,6 +185,124 @@ def _contains_draft_markers(payload: dict[str, Any]) -> bool:
     return any(marker in text for marker in FORBIDDEN_DRAFT_MARKERS)
 
 
+def _hotspot_input(hotspots: list[Hotspot]) -> list[dict[str, Any]]:
+    payload = []
+    for index, hotspot in enumerate(hotspots, 1):
+        papers = []
+        for paper_index, paper in enumerate(hotspot.papers, 1):
+            papers.append(
+                {
+                    "ref": f"H{index}-P{paper_index}",
+                    "paper_id": paper.item_id,
+                    "title": paper.title,
+                    "abstract": paper.summary,
+                    "journal": paper.journal,
+                    "published_at": paper.published_at,
+                    "publication_types": paper.provenance.get("publication_types", []),
+                }
+            )
+        payload.append(
+            {
+                "ref": f"H{index}",
+                "topic": hotspot.topic,
+                "trend": hotspot.trend,
+                "paper_count": hotspot.paper_count,
+                "representative_papers": papers,
+            }
+        )
+    return payload
+
+
+def analyze_hotspots(
+    root: Path, settings: dict[str, Any], hotspots: list[Hotspot]
+) -> tuple[list[Hotspot], dict[str, Any], dict[str, Any] | None]:
+    """Enrich board 4 in bounded batches; deterministic scoring remains the fallback."""
+    config = settings.get("hotspot_ai", {})
+    shared = settings.get("ai", {})
+    model = shared.get("model", "deepseek-flash")
+    metadata: dict[str, Any] = {
+        "enabled": bool(config.get("enabled")), "provider": shared.get("provider", ""),
+        "model": model, "status": "disabled", "batches": 0,
+    }
+    if not hotspots or not config.get("enabled"):
+        return hotspots, metadata, None
+    api_key = os.getenv("DEEPSEEK_API_KEY", "")
+    if not api_key:
+        metadata["status"] = "missing_key"
+        return hotspots, metadata, None
+    prompt_path = root / config.get("prompt_path", "prompts/hotspot_analysis_zh.md")
+    prompt = prompt_path.read_text(encoding="utf-8")
+    full_input = _hotspot_input(hotspots)
+    input_json = json.dumps(full_input, ensure_ascii=False, separators=(",", ":"))
+    cache_key = sha256(f"{model}\n{prompt}\n{input_json}".encode("utf-8")).hexdigest()
+    cache_path = root / config.get("cache_dir", "output/ai-cache/hotspots") / f"{cache_key}.json"
+    parsed_batches: list[dict[str, Any]] = []
+    responses: list[dict[str, Any]] = []
+    try:
+        if cache_path.exists():
+            parsed_batches = json.loads(cache_path.read_text(encoding="utf-8"))["batches"]
+            metadata.update({"status": "cache_hit", "cache_key": cache_key})
+        else:
+            batch_size = max(1, int(config.get("batch_size", 5)))
+            for offset in range(0, len(full_input), batch_size):
+                batch = full_input[offset : offset + batch_size]
+                response = requests.post(
+                    shared.get("endpoint", "https://api.deepseek.com/chat/completions"),
+                    headers={"Authorization": f"Bearer {api_key}", "Content-Type": "application/json"},
+                    json={
+                        "model": model,
+                        "messages": [
+                            {"role": "system", "content": prompt},
+                            {"role": "user", "content": "请分析以下结构化热点并只输出JSON：\n" + json.dumps(batch, ensure_ascii=False)},
+                        ],
+                        "thinking": {"type": "disabled"},
+                        "response_format": {"type": "json_object"},
+                        "max_tokens": int(config.get("max_tokens", 3200)),
+                        "stream": False,
+                    },
+                    timeout=int(config.get("timeout_seconds", 120)),
+                )
+                response.raise_for_status()
+                response_payload = response.json()
+                parsed = json.loads(response_payload["choices"][0]["message"]["content"])
+                if not isinstance(parsed.get("hotspots"), list):
+                    raise ValueError("hotspot AI response is missing hotspots[]")
+                parsed_batches.append(parsed)
+                responses.append(response_payload)
+            cache_path.parent.mkdir(parents=True, exist_ok=True)
+            cache_path.write_text(
+                json.dumps({"cache_key": cache_key, "batches": parsed_batches}, ensure_ascii=False, indent=2),
+                encoding="utf-8",
+            )
+            metadata.update({"status": "success", "cache_key": cache_key})
+        allowed_refs = {
+            paper["ref"] for record in full_input for paper in record["representative_papers"]
+        }
+        by_topic = {hotspot.topic: hotspot for hotspot in hotspots}
+        enriched = 0
+        for batch in parsed_batches:
+            for record in batch.get("hotspots", []):
+                if not isinstance(record, dict) or record.get("topic") not in by_topic:
+                    continue
+                evidence = [ref for ref in record.get("evidence", []) if ref in allowed_refs]
+                if not evidence:
+                    continue
+                hotspot = by_topic[record["topic"]]
+                hotspot.why_it_matters = _clean(record.get("why_it_matters")) or hotspot.why_it_matters
+                hotspot.research_designs = [_clean(x) for x in record.get("research_designs", []) if _clean(x)][:6] or hotspot.research_designs
+                hotspot.methods = [_clean(x) for x in record.get("methods", []) if _clean(x)][:6] or hotspot.methods
+                hotspot.research_gap = _clean(record.get("research_gap")) or hotspot.research_gap
+                hotspot.potential_phd_question = _clean(record.get("potential_phd_question")) or hotspot.potential_phd_question
+                hotspot.analysis_basis = evidence
+                hotspot.ai_status = "success"
+                enriched += 1
+        metadata.update({"batches": len(parsed_batches), "enriched_hotspots": enriched, "input_sha256": sha256(input_json.encode("utf-8")).hexdigest()})
+        return hotspots, metadata, {"request_input": full_input, "responses": responses, "metadata": metadata}
+    except Exception as exc:
+        metadata.update({"status": "failed", "error": f"{type(exc).__name__}: {exc}"[:300], "cache_key": cache_key})
+        return hotspots, metadata, {"request_input": full_input, "responses": responses, "metadata": metadata}
+
+
 def analyze_cross_board(
     root: Path,
     settings: dict[str, Any],
@@ -188,7 +312,7 @@ def analyze_cross_board(
     journals: list[ResearchItem],
 ) -> AIAnalysis:
     ai = settings.get("ai", {})
-    model = ai.get("model", "deepseek-v4-flash")
+    model = ai.get("model", "deepseek-flash")
     base_metadata = {
         "enabled": bool(ai.get("enabled")),
         "provider": ai.get("provider", ""),

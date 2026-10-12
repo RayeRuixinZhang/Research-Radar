@@ -57,9 +57,12 @@ class PubMedSource:
         journal_aliases: Iterable[str] | None = None,
         retmax: int = 500,
         extra_term: str = "",
+        date_from: date | None = None,
+        date_to: date | None = None,
     ) -> tuple[list[str], dict]:
-        start = date.today() - timedelta(days=days)
-        date_term = f'("{start:%Y/%m/%d}"[Date - Publication] : "{date.today():%Y/%m/%d}"[Date - Publication])'
+        start = date_from or (date.today() - timedelta(days=days))
+        end = date_to or date.today()
+        date_term = f'("{start:%Y/%m/%d}"[Date - Publication] : "{end:%Y/%m/%d}"[Date - Publication])'
         if journal_aliases:
             journal_term = " OR ".join(f'"{name}"[Journal]' for name in journal_aliases)
             query = f"{date_term} AND ({journal_term})"
@@ -136,8 +139,12 @@ class PubMedSource:
         journal_aliases: Iterable[str] | None = None,
         retmax: int = 500,
         extra_term: str = "",
+        date_from: date | None = None,
+        date_to: date | None = None,
     ) -> tuple[list[ResearchItem], dict]:
-        pmids, search_payload = self.search(days, journal_aliases, retmax, extra_term)
+        pmids, search_payload = self.search(
+            days, journal_aliases, retmax, extra_term, date_from=date_from, date_to=date_to
+        )
         items, xml_batches = self.fetch(pmids)
         return items, {"search": search_payload, "fetch_xml": xml_batches}
 

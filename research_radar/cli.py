@@ -44,7 +44,7 @@ def doctor(config: Config) -> int:
     if not checks["openalex_key"]:
         print("WARNING: OPENALEX_API_KEY is missing; citation/topic enrichment will be skipped.")
     if checks["ai_enabled"] and not checks["deepseek_key"]:
-        print("WARNING: DEEPSEEK_API_KEY is missing; board 5 will use the safe fallback.")
+        print("WARNING: DEEPSEEK_API_KEY is missing; board 4 will use deterministic analysis and board 5 will use its safe fallback.")
     return 0
 
 

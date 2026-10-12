@@ -11,6 +11,7 @@ dependencies = [
   "feedparser>=6.0.11,<7",
   "PyYAML>=6.0.2,<7",
   "requests>=2.32,<3",
+  "tzdata>=2025.2",
 ]
 
 [project.optional-dependencies]

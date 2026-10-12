@@ -15,18 +15,18 @@ GDELT = "https://api.gdeltproject.org/api/v2/doc/doc"
 
 
 def _feed_date(entry: dict) -> str:
-    for key in ("published_parsed", "updated_parsed"):
+    for key in ("published_parsed",):
         value = entry.get(key)
         if value:
             return datetime(*value[:6], tzinfo=timezone.utc).date().isoformat()
-    for key in ("published", "updated"):
+    for key in ("published",):
         value = entry.get(key)
         if value:
             try:
                 return parsedate_to_datetime(value).date().isoformat()
             except (TypeError, ValueError):
                 pass
-    return datetime.now(timezone.utc).date().isoformat()
+    return ""
 
 
 def collect_rss(source: dict, section: str, topic_config: dict) -> tuple[list[ResearchItem], dict]:
@@ -86,7 +86,8 @@ def collect_gdelt(source: dict, section: str, days: int, topic_config: dict) -> 
         categories = classify(f"{title} {summary}", topic_config)
         if not categories:
             continue
-        seen = str(article.get("seendate", ""))
+        original = str(article.get("date", ""))
+        seen = original or str(article.get("seendate", ""))
         published = f"{seen[:4]}-{seen[4:6]}-{seen[6:8]}" if len(seen) >= 8 else ""
         items.append(
             ResearchItem(
@@ -104,6 +105,7 @@ def collect_gdelt(source: dict, section: str, days: int, topic_config: dict) -> 
                     "adapter": "gdelt-discovery",
                     "original_domain": urlsplit(article.get("url", "")).netloc,
                     "gdelt_sourcecountry": article.get("sourcecountry", ""),
+                    "date_basis": "publisher_date" if original else "gdelt_seen_date",
                 },
             ).finalize()
         )
